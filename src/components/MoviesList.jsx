@@ -52,7 +52,7 @@ const MoviesList = () => {
 							<li
 								key={movie.id}
 								className='flex justify-center'>
-								<Link href=''>
+								<Link href={`/movie/${movie.id}`}>
 									<div
 										className={`rounded-sm bg-[--background-secondary] h-[420px] max-w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
 										<img
