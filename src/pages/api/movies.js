@@ -70,3 +70,18 @@ async function fetchApiReviews(IdValue) {
 }
 
 export { fetchApiReviews };
+
+// Trending movie
+
+async function fetchTrendingMovie() {
+	const params = `discover/movie?api_key=${API_KEY}&include_adult=true&include_video=true&language=en-US&page=1&sort_by=popularity.desc`;
+	const url = baseUrl + params;
+
+	const fetchA = await fetch(url).then(response => {
+		console.log('response', response);
+		return response.json();
+	});
+	return fetchA;
+}
+
+export { fetchTrendingMovie };

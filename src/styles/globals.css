@@ -25,5 +25,5 @@
 
 body {
   color: var(--text-color);
-  background: var(--bg-gradient);
+  background: var(--background);
 }
