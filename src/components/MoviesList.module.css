@@ -1,8 +1,5 @@
 .card__shadow {
-  box-shadow:
-    0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  box-shadow: var(--shadow);
 }
 
 .movie__img {
@@ -10,17 +7,11 @@
 }
 
 .movie__card {
-  transform: translateY(0px);
-  transition-property: all;
-  transition-duration: 500ms;
-  transition-timing-function: ease-out;
-  transition-delay: 100ms;
+  transform: var(--transform-zero);
+  transition: var(--transitions);
 }
 
 .movie__card:hover {
-  transform: translateY(-5px);
-  box-shadow:
-    0px 0px 20px 10px var(--accent),
-    0px 0px 5px 5px rgb(255, 255, 255),
-    0px 2px 2px rgba(0, 0, 0, 0.12);
+  transform: var(--move-up);
+  box-shadow: var(--movie-hover);
 }

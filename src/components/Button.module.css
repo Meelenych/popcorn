@@ -1,0 +1,15 @@
+.Button {
+  background-color: var(--background-secondary);
+  transition: var(--transitions);
+  box-shadow: var(--shadow);
+  transition: var(--transitions);
+  transform: var(--transform-zero);
+}
+
+.Button:hover,
+.Button:focus {
+  background: var(--bg-gradient);
+  color: var(--accent);
+  box-shadow: var(--movie-hover);
+  transform: var(--move-up);
+}
