@@ -16,7 +16,7 @@ const Header = () => {
 			</Link>
 			<Link
 				className='link-accent hover:text-[--accent] active:text-[--active]'
-				href='/'>
+				href='/search'>
 				Search
 			</Link>
 		</div>

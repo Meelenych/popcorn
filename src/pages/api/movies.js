@@ -3,7 +3,7 @@ const baseUrl = `https://api.themoviedb.org/3/`;
 
 //==================HOME PAGE=====================
 async function fetchApi(page) {
-	const params = `trending/movie/day?api_key=${API_KEY}&page=${page}&include_adult=false`;
+	const params = `trending/movie/day?api_key=${API_KEY}&page=${page}&include_adult=true`;
 	const url = baseUrl + params;
 
 	const fetchA = await fetch(url).then(response => {
@@ -17,7 +17,7 @@ export { fetchApi };
 
 //==================SEARCH PAGE=====================
 async function fetchApiSearch(submitValue, page) {
-	const searchParams = `search/movie?api_key=${API_KEY}&language=en-US&query=${submitValue}&page=${page}&include_adult=false`;
+	const searchParams = `search/movie?api_key=${API_KEY}&language=en-US&query=${submitValue}&page=${page}&include_adult=true`;
 	const url = baseUrl + searchParams;
 
 	const fetchA = await fetch(url).then(response => {

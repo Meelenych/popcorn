@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Button.module.css';
+import styles from './LoadMoreBtn.module.css';
 
 const LoadMoreBtn = ({ onClick }) => {
 	return (
