@@ -1,49 +1,78 @@
-import React from 'react';
-import { useState, useEffect, useMemo } from 'react';
-import { useRouter } from 'next/router';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Link from 'next/link';
 import { fetchApi } from '../pages/api/movies';
 import styles from './MoviesList.module.css';
 import LoadMoreBtn from './LoadMoreBtn';
 import { fetchGenres } from '@/pages/api/genres';
 
-const MoviesList = () => {
+const MoviesList = ({ movies, submitValue, loadMoreSearchResults }) => {
 	const [loading, setLoading] = useState(false);
-	const [movies, setMovies] = useState([]);
+	const [moviesCollection, setMoviesCollection] = useState([]);
 	const [page, setPage] = useState(1);
+	const [resultsLength, setResultsLength] = useState(0);
 	const [genres, setGenres] = useState([]);
-	const router = useRouter();
-
+	const firstNewMovieRef = useRef(null); // Reference for the first new movie in the batch
 	const memoizedMovies = useMemo(() => movies, [movies]);
 
+	// Effect to fetch movies or search results
 	useEffect(() => {
 		setLoading(true);
-		fetchApi(page)
-			.then(movieData => {
-				setMovies(prevMovies => [...prevMovies, ...movieData.results]);
-			})
-			.catch(err => {
-				console.log(err);
-			})
-			.finally(() => setLoading(false));
-	}, [page]);
 
+		if (submitValue === '') {
+			// Fetch trending movies
+			fetchApi(page)
+				.then(movieData => {
+					setMoviesCollection(prevMovies => [
+						...prevMovies, // Append the new results
+						...movieData.results,
+					]);
+					setResultsLength(movieData.results.length);
+				})
+				.catch(err => console.error(err))
+				.finally(() => setLoading(false));
+		} else {
+			// When searching, just set the movies collection
+			setMoviesCollection(memoizedMovies);
+			setLoading(false);
+		}
+	}, [submitValue, memoizedMovies, page]);
+
+	// Load more movies when the button is clicked
 	const loadMore = () => {
-		setPage(page + 1);
+		if (submitValue === '') {
+			// Load more trending movies
+			setPage(prevPage => prevPage + 1); // Increment page for pagination
+		} else {
+			// Load more search results
+			loadMoreSearchResults(); // Call the provided function to load more search results
+		}
 	};
 
+	// Fetch genres when the component mounts
 	useEffect(() => {
 		fetchGenres().then(result => setGenres(result));
 	}, []);
 
-	// Function to convert genre ids to genre names
+	// Utility to get genre names from genre ids
 	const getGenreNames = genreIds => {
 		return genreIds
-			.map(id => genres?.find(genre => genre.id === id)) // Find genre objects by ID
-			.filter(genre => genre) // Ensure the genre exists
-			.map(genre => genre.name) // Get the name of each genre
-			.join(', '); // Join the names into a single string
+			.map(id => genres?.find(genre => genre.id === id))
+			.filter(genre => genre)
+			.map(genre => genre.name)
+			.join(', ');
 	};
+
+	// Scroll to the first new movie in the batch
+	useEffect(() => {
+		// Only scroll if there are new movies added and the first new movie ref is set
+		if (moviesCollection.length > 0 && firstNewMovieRef.current) {
+			// Scroll to the first new movie element
+			firstNewMovieRef.current.scrollIntoView({
+				behavior: 'smooth',
+				block: 'start', // Ensures it aligns at the top of the viewport
+			});
+		}
+	}, [moviesCollection]); // Trigger when the moviesCollection changes
 
 	return (
 		<div>
@@ -51,41 +80,44 @@ const MoviesList = () => {
 				{loading ? (
 					<span className='loading loading-spinner text-accent'></span>
 				) : (
-					memoizedMovies.map((movie, index) => {
-						return (
-							<li
-								key={`${movie.id}-${index}`}
-								className='flex justify-center'>
-								<Link href={`/movie/${movie.id}`}>
-									<div
-										className={`rounded-sm bg-[--background-secondary] h-[420px] max-w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
-										<img
-											className={`rounded-sm ${styles.movie__img}`}
-											src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`}
-											loading='lazy'
-											alt={movie.original_title}
-											data-src={movie.poster_path}
-										/>
-
-										<div className='p-2'>
-											<h3 className='uppercase text-[--text-color] text-sm text-ellipsis overflow-hidden whitespace-nowrap'>
-												{movie.title}
-											</h3>
-											<p className='text-xs font-light text-ellipsis overflow-hidden whitespace-nowrap'>
-												Genres: {getGenreNames(movie.genre_ids)}
-											</p>
-											<p className='text-xs font-light'>
-												Release date:{' '}
-												{new Date(movie?.release_date).toLocaleDateString('en-US')}
-											</p>
-										</div>
+					moviesCollection?.map((movie, index) => (
+						<li
+							key={`${movie.id}-${index}`}
+							className='flex justify-center'
+							ref={
+								index === moviesCollection.length - resultsLength
+									? firstNewMovieRef
+									: null
+							} // Assign the ref to the first new movie
+						>
+							<Link href={`/movie/${movie.id}`}>
+								<div
+									className={`rounded-sm bg-[--background-secondary] h-[420px] max-w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
+									<img
+										className={`rounded-sm ${styles.movie__img}`}
+										src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`}
+										loading='lazy'
+										alt={movie.original_title}
+										data-src={movie.poster_path}
+									/>
+									<div className='p-2'>
+										<h3 className='uppercase text-[--text-color] text-sm text-ellipsis overflow-hidden whitespace-nowrap'>
+											{movie.title}
+										</h3>
+										<p className='text-xs font-light text-ellipsis overflow-hidden whitespace-nowrap'>
+											Genres: {getGenreNames(movie.genre_ids)}
+										</p>
+										<p className='text-xs font-light'>
+											Release date:{' '}
+											{new Date(movie?.release_date).toLocaleDateString('en-US')}
+										</p>
 									</div>
-								</Link>
-							</li>
-						);
-					})
+								</div>
+							</Link>
+						</li>
+					))
 				)}
-				{movies.length !== 0 && <LoadMoreBtn onClick={loadMore} />}
+				<LoadMoreBtn onClick={loadMore} />
 			</ul>
 		</div>
 	);

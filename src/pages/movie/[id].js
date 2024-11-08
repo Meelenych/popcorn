@@ -38,7 +38,8 @@ const MovieId = () => {
 				</div>
 				<div className='w-full md:w-1/2'>
 					<h1 className='text-xl font-medium'>{movie?.title}</h1>
-					<p>Slogan: {movie?.tagline}</p>
+					{movie?.tagline ? <p>Slogan: {movie?.tagline}</p> : <></>}
+					<p>Overview: {movie?.overview}</p>
 					<p>
 						Genres:{' '}
 						{movie?.genres.map((genre, index) => (
@@ -69,15 +70,6 @@ const MovieId = () => {
 					<p>For adults: {movie?.adult ? 'yes' : 'no'}</p>
 					<p>Budget: ${movie?.budget.toLocaleString('en-US')}</p>
 					<p>Revenue: ${movie?.revenue.toLocaleString('en-US')}</p>
-					<p>
-						Homepage:{' '}
-						<Link
-							href={`${movie?.homepage}`}
-							target='blank'>
-							{movie?.homepage}
-						</Link>
-					</p>
-					<p>Overview: {movie?.overview}</p>
 					<p>Popularity: {movie?.popularity}</p>
 					<p>
 						Release date: {new Date(movie?.release_date).toLocaleDateString('en-US')}
@@ -85,6 +77,15 @@ const MovieId = () => {
 					<p>Runtime: {movie?.runtime} min</p>
 					<p>Rating : {movie?.vote_average}</p>
 					<p>Video: {movie?.video ? 'available' : 'not available'}</p>
+					<p>
+						Homepage:{' '}
+						<Link
+							className='underline hover:text-[--accent]'
+							href={`${movie?.homepage}`}
+							target='blank'>
+							{movie?.homepage}
+						</Link>
+					</p>
 				</div>
 			</div>
 		</>

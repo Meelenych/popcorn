@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
 		<div
 			className={`${geistSans.variable} min-h-screen font-[family-name:var(--font-geist-sans)]`}>
 			<Header />
-			<main className='h-max bg-[--background] text-[--accent]'>
+			<main className='h-max bg-[--background] text-[--accent] px-4'>
 				<div className=''>{children}</div>
 			</main>
 			{/* <Footer /> */}
