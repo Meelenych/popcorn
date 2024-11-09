@@ -5,6 +5,7 @@
 :root {
   --background: #10181f;
   --background-secondary: #39465f;
+  --background-reviews: #182437;
   --bg-gradient: linear-gradient(to bottom, var(--background), var(--background-secondary));
   --text-color: rgb(117, 139, 174);
   --accent: #4190db;

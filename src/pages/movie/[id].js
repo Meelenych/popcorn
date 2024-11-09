@@ -118,7 +118,7 @@ const MovieId = () => {
 					<p>Rating : {movie?.vote_average.toFixed()}/10</p>
 					<p>Video: {movie?.video ? 'available' : 'not available'}</p>
 					{movie?.homepage && (
-						<p>
+						<p className='text-ellipsis overflow-hidden'>
 							Homepage:{' '}
 							<Link
 								className='underline hover:text-[--accent]'
