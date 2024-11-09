@@ -5,6 +5,7 @@ import { fetchApiMovie } from '../api/movies';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import BackButton from '@/components/BackBtn';
+import Layout from '@/components/Layout';
 
 const MovieId = () => {
 	const [movie, setMovie] = useState(null);
@@ -22,11 +23,11 @@ const MovieId = () => {
 	console.log('movie', movie);
 
 	return (
-		<>
+		<Layout>
 			<BackButton />
-			<div className='p-4 flex flex-col md:flex-row gap-6'>
+			<div className='pt-4 flex flex-col md:flex-row gap-6'>
 				<div
-					className={`rounded-sm bg-[--background-secondary] p-1 w-full md:w-1/2 h-[620px] relative`}>
+					className={`rounded-sm bg-[--background-secondary] p-1 w-full md:w-1/3 h-[720px] relative`}>
 					<img
 						className='rounded-sm w-full h-full object-cover'
 						style={{ objectPosition: '50% 30%' }}
@@ -77,18 +78,22 @@ const MovieId = () => {
 					<p>Runtime: {movie?.runtime} min</p>
 					<p>Rating : {movie?.vote_average}</p>
 					<p>Video: {movie?.video ? 'available' : 'not available'}</p>
-					<p>
-						Homepage:{' '}
-						<Link
-							className='underline hover:text-[--accent]'
-							href={`${movie?.homepage}`}
-							target='blank'>
-							{movie?.homepage}
-						</Link>
-					</p>
+					{movie?.homepage ? (
+						<p>
+							Homepage:{' '}
+							<Link
+								className='underline hover:text-[--accent]'
+								href={`${movie?.homepage}`}
+								target='blank'>
+								{movie?.homepage}
+							</Link>
+						</p>
+					) : (
+						<></>
+					)}
 				</div>
 			</div>
-		</>
+		</Layout>
 	);
 };
 

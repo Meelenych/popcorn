@@ -2,10 +2,6 @@
   box-shadow: var(--shadow);
 }
 
-.movie__img {
-  background: url(../../public/images/dummy.jpg);
-}
-
 .movie__card {
   transform: var(--transform-zero);
   transition: var(--transitions);

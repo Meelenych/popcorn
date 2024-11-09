@@ -92,10 +92,14 @@ const MoviesList = ({ movies, submitValue, loadMoreSearchResults }) => {
 						>
 							<Link href={`/movie/${movie.id}`}>
 								<div
-									className={`rounded-sm bg-[--background-secondary] h-[420px] max-w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
+									className={`rounded-sm bg-[--background-secondary] h-[420px] w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
 									<img
-										className={`rounded-sm ${styles.movie__img}`}
-										src={`https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`}
+										className='rounded-sm'
+										src={
+											movie.poster_path
+												? `https://www.themoviedb.org/t/p/w440_and_h660_face/${movie.poster_path}`
+												: '/images/dummy.jpg'
+										}
 										loading='lazy'
 										alt={movie.original_title}
 										data-src={movie.poster_path}
