@@ -10,7 +10,7 @@ const BackButton = () => {
 	return (
 		<button
 			onClick={handleBack}
-			className='btn flex'>
+			className='btn flex text-sm'>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				fill='none'
@@ -24,7 +24,7 @@ const BackButton = () => {
 					d='M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3'
 				/>
 			</svg>
-			<span className='ml-2'>Go Back</span>
+			<span>Back</span>
 		</button>
 	);
 };

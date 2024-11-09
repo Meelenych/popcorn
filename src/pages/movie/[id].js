@@ -1,15 +1,24 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter } from 'next/router';
 import { fetchApiMovie } from '../api/movies';
+import { fetchApiCredits, fetchApiReviews } from '../api/movies';
 import { useEffect } from 'react';
 import Link from 'next/link';
+import Loading from '../loading';
+
 import BackButton from '@/components/BackBtn';
 import Details from '@/components/Details';
 import Layout from '@/components/Layout';
+import Cast from '@/components/Cast';
+import Reviews from '@/components/Reviews';
 
 const MovieId = () => {
 	const [movie, setMovie] = useState(null);
+	const [cast, setCast] = useState([]);
+	const [showCast, setShowCast] = useState(false);
+	const [reviews, setReviews] = useState([]);
+	const [showReviews, setShowReviews] = useState(false);
 	const router = useRouter();
 	const { id } = router.query;
 
@@ -23,12 +32,37 @@ const MovieId = () => {
 	}, [id]);
 	console.log('movie', movie);
 
+	const handleShowCast = () => {
+		if (!showCast) {
+			fetchApiCredits(id).then(castData => {
+				setCast(castData.cast);
+				console.log('castData.cast', castData.cast);
+			});
+		}
+		setShowCast(!showCast);
+	};
+
+	const handleShowReviews = () => {
+		if (!showReviews) {
+			fetchApiReviews(id).then(reviewsData => {
+				setReviews(reviewsData.results);
+				console.log('reviewsData', reviewsData);
+			});
+		}
+		setShowReviews(!showReviews);
+	};
+
 	return (
 		<Layout>
-			<div className='grid grid-cols-3'>
+			<nav className='grid grid-cols-3 gap-4'>
 				<BackButton />
-				<Details />
-			</div>
+				<Details
+					handleShowCast={handleShowCast}
+					showCast={showCast}
+					handleShowReviews={handleShowReviews}
+					showReviews={showReviews}
+				/>
+			</nav>
 
 			<div className='pt-4 flex flex-col md:flex-row gap-6'>
 				<div
@@ -97,6 +131,16 @@ const MovieId = () => {
 					)}
 				</div>
 			</div>
+			<Suspense fallback={<Loading />}>
+				<Cast
+					showCast={showCast}
+					cast={cast}
+				/>
+				<Reviews
+					showReviews={showReviews}
+					reviews={reviews}
+				/>
+			</Suspense>
 		</Layout>
 	);
 };

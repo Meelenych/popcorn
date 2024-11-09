@@ -121,7 +121,7 @@ const MoviesList = ({ movies, submitValue, loadMoreSearchResults }) => {
 						</li>
 					))
 				)}
-				<LoadMoreBtn onClick={loadMore} />
+				{resultsLength >= 20 && <LoadMoreBtn onClick={loadMore} />}
 			</ul>
 		</div>
 	);

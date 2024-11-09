@@ -3,7 +3,7 @@ const baseUrl = `https://api.themoviedb.org/3/`;
 
 //==================HOME PAGE=====================
 async function fetchApi(page) {
-	const params = `trending/movie/day?api_key=${API_KEY}&page=${page}&include_adult=true`;
+	const params = `trending/movie/day?api_key=${API_KEY}&page=${page}&include_adult=false`;
 	const url = baseUrl + params;
 
 	const fetchA = await fetch(url).then(response => {
@@ -17,7 +17,7 @@ export { fetchApi };
 
 //==================SEARCH PAGE=====================
 async function fetchApiSearch(submitValue, page) {
-	const searchParams = `search/movie?api_key=${API_KEY}&language=en-US&query=${submitValue}&page=${page}&include_adult=true`;
+	const searchParams = `search/movie?api_key=${API_KEY}&language=en-US&query=${submitValue}&page=${page}&include_adult=false`;
 	const url = baseUrl + searchParams;
 
 	const fetchA = await fetch(url).then(response => {
@@ -71,10 +71,10 @@ async function fetchApiReviews(IdValue) {
 
 export { fetchApiReviews };
 
-// Trending movie
+// Top movies
 
-async function fetchTrendingMovie() {
-	const params = `discover/movie?api_key=${API_KEY}&include_adult=true&include_video=true&language=en-US&page=1&sort_by=popularity.desc`;
+async function fetchTopMovie() {
+	const params = `movie/top_rated?api_key=${API_KEY}&include_adult=false&include_video=true&language=en-US&page=1&sort_by=popularity.desc`;
 	const url = baseUrl + params;
 
 	const fetchA = await fetch(url).then(response => {
@@ -84,4 +84,4 @@ async function fetchTrendingMovie() {
 	return fetchA;
 }
 
-export { fetchTrendingMovie };
+export { fetchTopMovie };

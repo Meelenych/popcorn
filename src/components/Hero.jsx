@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { fetchTrendingMovie } from '@/pages/api/movies';
+import { fetchTopMovie } from '@/pages/api/movies';
 import Link from 'next/link';
 import styles from './MoviesList.module.css';
 import { fetchGenres } from '@/pages/api/genres';
@@ -11,7 +11,7 @@ const Hero = () => {
 	const intervalRef = useRef(null);
 
 	useEffect(() => {
-		fetchTrendingMovie()
+		fetchTopMovie()
 			.then(movieData => {
 				setHeroMovies(movieData.results);
 				console.log('hero', movieData.results);
