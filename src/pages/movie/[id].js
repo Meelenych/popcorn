@@ -5,6 +5,7 @@ import { fetchApiMovie } from '../api/movies';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import BackButton from '@/components/BackBtn';
+import Details from '@/components/Details';
 import Layout from '@/components/Layout';
 
 const MovieId = () => {
@@ -24,7 +25,11 @@ const MovieId = () => {
 
 	return (
 		<Layout>
-			<BackButton />
+			<div className='grid grid-cols-3'>
+				<BackButton />
+				<Details />
+			</div>
+
 			<div className='pt-4 flex flex-col md:flex-row gap-6'>
 				<div
 					className={`rounded-sm bg-[--background-secondary] p-1 w-full md:w-1/3 h-[720px] relative`}>
@@ -39,7 +44,7 @@ const MovieId = () => {
 				</div>
 				<div className='w-full md:w-1/2'>
 					<h1 className='text-xl font-medium'>{movie?.title}</h1>
-					{movie?.tagline ? <p>Slogan: {movie?.tagline}</p> : <></>}
+					{movie?.tagline && <p>Slogan: {movie?.tagline}</p>}
 					<p>Overview: {movie?.overview}</p>
 					<p>
 						Genres:{' '}
@@ -76,20 +81,19 @@ const MovieId = () => {
 						Release date: {new Date(movie?.release_date).toLocaleDateString('en-US')}
 					</p>
 					<p>Runtime: {movie?.runtime} min</p>
-					<p>Rating : {movie?.vote_average}</p>
+					<p>Rating : {movie?.vote_average.toFixed()}/10</p>
 					<p>Video: {movie?.video ? 'available' : 'not available'}</p>
-					{movie?.homepage ? (
+					{movie?.homepage && (
 						<p>
 							Homepage:{' '}
 							<Link
 								className='underline hover:text-[--accent]'
-								href={`${movie?.homepage}`}
-								target='blank'>
-								{movie?.homepage}
+								href={movie.homepage}
+								target='_blank'
+								rel='noopener noreferrer'>
+								{movie.homepage}
 							</Link>
 						</p>
-					) : (
-						<></>
 					)}
 				</div>
 			</div>
