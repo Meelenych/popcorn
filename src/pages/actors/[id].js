@@ -68,7 +68,7 @@ const Actor = () => {
 					className={`${s.candy} text-4xl text-center tracking-widest uppercase font-bold text-white p-4 mb-4`}>
 					Filmography
 				</h3>
-				<ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4'>
+				<ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4'>
 					{filmography?.cast?.map(movie => {
 						return (
 							<li
@@ -87,9 +87,11 @@ const Actor = () => {
 											data-src={movie.poster_path}
 										/>
 										<div className='p-2'>
-											<p className='text-lg'>{movie.title}</p>
-											<p className='text-lg'>
-												Released:{' '}
+											<h3 className='uppercase text-[--text-color] text-sm'>
+												{movie.title}
+											</h3>
+											<p className='text-[--text-color]'>
+												Release year:{' '}
 												{new Date(movie?.release_date)
 													.toLocaleDateString('en-US')
 													.slice(-4)}
