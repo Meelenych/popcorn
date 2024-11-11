@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import styles from './MoviesList.module.css';
 
 const Cast = ({ showCast, cast }) => {
 	return (
@@ -9,7 +10,7 @@ const Cast = ({ showCast, cast }) => {
 					{cast.map(actor => (
 						<li
 							key={actor.id}
-							className='text-sm font-medium p-1 bg-[--background-secondary] rounded-sm'>
+							className={`text-sm font-medium p-1 bg-[--background-secondary] rounded-sm ${styles.movie__card}`}>
 							<Link href={`/actors/${actor.id}`}>
 								<div>
 									<img

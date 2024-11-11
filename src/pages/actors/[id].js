@@ -5,16 +5,16 @@ import Link from 'next/link';
 import Layout from '@/components/Layout';
 import BackButton from '@/components/BackBtn';
 import styles from '../../components/MoviesList.module.css';
+import LoadMoreBtn from '@/components/LoadMoreBtn';
 
 const Actor = () => {
 	const router = useRouter();
-	const { id } = router.query; // Get actor ID from URL query
+	const { id } = router.query;
 	const [actorData, setActorData] = useState(null);
-	const [filmography, setFilmography] = useState([]); // Add state for filmography data
+	const [filmography, setFilmography] = useState([]);
 
 	useEffect(() => {
 		if (id) {
-			// Make sure `id` is available before calling the API
 			fetchActor(id)
 				.then(actorData => {
 					setActorData(actorData);
@@ -33,22 +33,39 @@ const Actor = () => {
 			.catch(err => {
 				console.log('Error fetching actor:', err);
 			});
-	}, [id]); // Re-run effect if `id` changes
+	}, [id]);
 
 	if (!actorData) {
-		return <div>Loading...</div>; // Show loading state while data is being fetched
+		return <div>Loading...</div>;
 	}
 
 	return (
 		<Layout>
 			<BackButton />
 			<section className='mt-4'>
-				<h1 className='text-3xl mb-4'>{actorData.name}</h1>
-				<p>{actorData.biography}</p>
+				<div className='flex gap-4 flex-col md:flex-row'>
+					<div className='w-full md:w-1/4'>
+						<img
+							className='rounded-sm'
+							src={
+								actorData.profile_path
+									? `https://www.themoviedb.org/t/p/w440_and_h660_face/${actorData.profile_path}`
+									: '/images/dummy.jpg'
+							}
+							loading='lazy'
+							alt={actorData.name}
+							data-src={actorData.profile_path}
+						/>
+					</div>
+					<div className='w-full lg:w-1/2'>
+						<h1 className='text-3xl mb-4'>{actorData.name}</h1>
+						<p>{actorData.biography}</p>
+					</div>
+				</div>
 			</section>
 			<section className='mt-4'>
 				<h2 className='text-2xl mb-4'>Filmography</h2>
-				<ul className='grid grid-cols-5 gap-4'>
+				<ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4'>
 					{filmography?.cast?.map(movie => {
 						return (
 							<li
@@ -73,10 +90,10 @@ const Actor = () => {
 											</p>
 										</div>
 									</div>
+									<div className='absolute top-0 left-0 right-0 p-2 text-white bg-black bg-opacity-70 opacity-0 hover:opacity-100 h-full'>
+										<p className='p-10'>{movie?.overview}</p>
+									</div>
 								</Link>
-								<div className='absolute top-0 left-0 right-0 p-2 text-white bg-black bg-opacity-50 opacity-0 hover:opacity-100 h-full'>
-									<p className='p-10'>{movie?.overview}</p>
-								</div>
 							</li>
 						);
 					})}

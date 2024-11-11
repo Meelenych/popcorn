@@ -76,7 +76,7 @@ const MoviesList = ({ movies, submitValue, loadMoreSearchResults }) => {
 
 	return (
 		<div>
-			<ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7 p-6 gap-6'>
+			<ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 p-6 gap-6'>
 				{loading ? (
 					<span className='loading loading-spinner text-accent'></span>
 				) : (
@@ -88,8 +88,7 @@ const MoviesList = ({ movies, submitValue, loadMoreSearchResults }) => {
 								index === moviesCollection.length - resultsLength
 									? firstNewMovieRef
 									: null
-							} // Assign the ref to the first new movie
-						>
+							}>
 							<Link href={`/movie/${movie.id}`}>
 								<div
 									className={`rounded-sm bg-[--background-secondary] h-[420px] w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
@@ -121,7 +120,7 @@ const MoviesList = ({ movies, submitValue, loadMoreSearchResults }) => {
 						</li>
 					))
 				)}
-				{resultsLength >= 20 && <LoadMoreBtn onClick={loadMore} />}
+				<LoadMoreBtn onClick={loadMore} />
 			</ul>
 		</div>
 	);

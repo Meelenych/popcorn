@@ -58,7 +58,7 @@ const Hero = () => {
 	return (
 		<div className='h-full'>
 			<h1 className='text-3xl mb-5 text-center'>Popcorn time</h1>
-			<ul className='grid grid-cols-1 sm:grid-cols-3 gap-16'>
+			<ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-16'>
 				{randomMovies.map(movie => {
 					return (
 						<li
@@ -84,9 +84,12 @@ const Hero = () => {
 											Release date:{' '}
 											{new Date(movie?.release_date).toLocaleDateString('en-US')}
 										</p>
+										<p className='text-sm text-[--active]'>
+											Rating : {movie?.vote_average.toFixed()}/10
+										</p>
 									</div>
-									<div className='absolute top-0 left-0 right-0 p-2 text-white bg-black bg-opacity-50 opacity-0 hover:opacity-100 h-full'>
-										<p className='p-10'>{movie?.overview}</p>
+									<div className='absolute top-0 left-0 right-0 p-2 text-base text-white bg-black bg-opacity-70 opacity-0 hover:opacity-100 h-full'>
+										<p className='p-10 md:p-6 xl:p-10'>{movie?.overview}</p>
 									</div>
 								</div>
 							</Link>
