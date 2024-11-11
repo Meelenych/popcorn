@@ -2,12 +2,7 @@ import React from 'react';
 import s from '../styles/gradients.module.css';
 
 const Reviews = ({ showReviews, reviews }) => {
-	const loadMore = () => {
-		setPage(prevPage => prevPage + 1);
-	};
-
 	console.log('reviews', reviews);
-
 	return (
 		<div className='mt-4'>
 			{showReviews ? (
