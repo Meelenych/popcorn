@@ -1,0 +1,11 @@
+.candy {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--text-color),
+    var(--active) 30px,
+    var(--accent) 30px,
+    var(--background-secondary) 60px
+  );
+  text-shadow: 3px 3px 3px var(--background);
+  border-radius: 2px;
+}
