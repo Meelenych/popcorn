@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { fetchActor, fetchFilmography } from '../api/actors'; // Ensure correct import path
+import { fetchActor, fetchFilmography } from '../api/actors';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Layout from '@/components/Layout';
 import BackButton from '@/components/BackBtn';
 import styles from '../../components/MoviesList.module.css';
-import LoadMoreBtn from '@/components/LoadMoreBtn';
+import s from '../../styles/gradients.module.css';
 
 const Actor = () => {
 	const router = useRouter();
@@ -64,7 +64,10 @@ const Actor = () => {
 				</div>
 			</section>
 			<section className='mt-4'>
-				<h2 className='text-2xl mb-4'>Filmography</h2>
+				<h3
+					className={`${s.candy} text-4xl text-center tracking-widest uppercase font-bold text-white p-4 mb-4`}>
+					Filmography
+				</h3>
 				<ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4'>
 					{filmography?.cast?.map(movie => {
 						return (
@@ -85,6 +88,12 @@ const Actor = () => {
 										/>
 										<div className='p-2'>
 											<p className='text-lg'>{movie.title}</p>
+											<p className='text-lg'>
+												Released:{' '}
+												{new Date(movie?.release_date)
+													.toLocaleDateString('en-US')
+													.slice(-4)}
+											</p>
 											<p className='text-[--active]'>
 												Rating: {movie.vote_average.toFixed()}/10
 											</p>
