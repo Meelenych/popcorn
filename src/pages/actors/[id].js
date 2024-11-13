@@ -72,6 +72,7 @@ const Actor = () => {
 					{filmography?.cast?.map(movie => {
 						return (
 							<li
+								key={movie.id}
 								className={`flex justify-center ${styles.movie__card} text-sm font-medium p-1 bg-[--background-secondary] rounded-sm relative`}>
 								<Link href={`/movie/${movie.id}`}>
 									<div>
