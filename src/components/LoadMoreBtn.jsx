@@ -6,7 +6,7 @@ const LoadMoreBtn = ({ onClick }) => {
 		<div className='flex justify-center'>
 			<button
 				type='submit'
-				className={`w-full p-3 rounded-sm ${styles.Button}`}
+				className={`w-[240px] p-3 rounded-sm ${styles.Button}`}
 				onClick={onClick}>
 				Load more...
 			</button>

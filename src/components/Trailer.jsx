@@ -20,8 +20,7 @@ const Trailer = ({ trailerKey, showTrailer }) => {
 						Trailer
 					</h3>
 					<iframe
-						width='100%'
-						height='800px'
+						className='w-full h-[300px] md:h-[800px]'
 						src={`https://www.youtube.com/embed/${trailerKey}`}
 						title='YouTube trailer'
 						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
