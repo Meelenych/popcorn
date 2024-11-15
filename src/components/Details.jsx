@@ -6,9 +6,11 @@ const Details = ({
 	showCast,
 	handleShowReviews,
 	showReviews,
+	showTrailer,
+	handleShowTrailer,
 }) => {
 	return (
-		<div className='grid grid-cols-2 col-span-2 gap-4'>
+		<div className='grid grid-cols-3 col-span-2 gap-4'>
 			<button
 				onClick={handleShowCast}
 				className='btn'>
@@ -18,6 +20,11 @@ const Details = ({
 				onClick={handleShowReviews}
 				className='btn'>
 				{showReviews ? 'Hide reviews' : 'Show reviews'}
+			</button>
+			<button
+				onClick={handleShowTrailer}
+				className='btn'>
+				{showTrailer ? 'Hide trailer' : 'Show trailer'}
 			</button>
 		</div>
 	);

@@ -1,15 +1,19 @@
 import React from 'react';
 import { useState, Suspense } from 'react';
 import { useRouter } from 'next/router';
-import { fetchApiMovie } from '../api/movies';
-import { fetchApiCredits, fetchApiReviews } from '../api/movies';
+import {
+	fetchApiMovie,
+	fetchApiCredits,
+	fetchApiReviews,
+	fetchTrailer,
+} from '../api/movies';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import Loading from '../loading';
-
 import BackButton from '@/components/BackBtn';
 import Details from '@/components/Details';
 import Layout from '@/components/Layout';
+import Trailer from '@/components/Trailer';
 import Cast from '@/components/Cast';
 import Reviews from '@/components/Reviews';
 
@@ -19,6 +23,8 @@ const MovieId = () => {
 	const [showCast, setShowCast] = useState(false);
 	const [reviews, setReviews] = useState([]);
 	const [showReviews, setShowReviews] = useState(false);
+	const [trailer, setTrailer] = useState(null);
+	const [showTrailer, setShowTrailer] = useState(false);
 	const router = useRouter();
 	const { id } = router.query;
 
@@ -31,6 +37,16 @@ const MovieId = () => {
 		}
 	}, [id]);
 	console.log('movie', movie);
+
+	const handleShowTrailer = () => {
+		if (!showTrailer) {
+			fetchTrailer(id).then(trailerData => {
+				setTrailer(trailerData.results[0]?.key);
+				console.log('trailer', trailer, trailerData.results[0]);
+			});
+			setShowTrailer(!showTrailer);
+		}
+	};
 
 	const handleShowCast = () => {
 		if (!showCast) {
@@ -61,6 +77,8 @@ const MovieId = () => {
 					showCast={showCast}
 					handleShowReviews={handleShowReviews}
 					showReviews={showReviews}
+					handleShowTrailer={handleShowTrailer}
+					showTrailer={showTrailer}
 				/>
 			</nav>
 
@@ -132,6 +150,11 @@ const MovieId = () => {
 				</div>
 			</div>
 			<Suspense fallback={<Loading />}>
+				<Trailer
+					showTrailer={showTrailer}
+					trailerKey={trailer}
+				/>
+
 				<Cast
 					showCast={showCast}
 					cast={cast}

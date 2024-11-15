@@ -85,3 +85,20 @@ async function fetchTopMovie() {
 }
 
 export { fetchTopMovie };
+
+// Trailers
+
+async function fetchTrailer(IdValue) {
+	const params = `movie/${IdValue}/videos?api_key=${API_KEY}`;
+	const url = baseUrl + params;
+
+	const response = await fetch(url);
+	if (!response.ok) {
+		throw new Error('Failed to fetch actor data');
+	}
+
+	const trailer = await response.json();
+	return trailer;
+}
+
+export { fetchTrailer };
