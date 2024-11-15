@@ -63,16 +63,16 @@ const MoviesList = ({ movies, submitValue, loadMoreSearchResults }) => {
 	};
 
 	// Scroll to the first new movie in the batch
-	useEffect(() => {
-		// Only scroll if there are new movies added and the first new movie ref is set
-		if (moviesCollection.length > 0 && firstNewMovieRef.current) {
-			// Scroll to the first new movie element
-			firstNewMovieRef.current.scrollIntoView({
-				behavior: 'smooth',
-				block: 'start', // Ensures it aligns at the top of the viewport
-			});
-		}
-	}, [moviesCollection]); // Trigger when the moviesCollection changes
+	// useEffect(() => {
+	// 	// Only scroll if there are new movies added and the first new movie ref is set
+	// 	if (moviesCollection.length > 0 && firstNewMovieRef.current) {
+	// 		// Scroll to the first new movie element
+	// 		firstNewMovieRef.current.scrollIntoView({
+	// 			behavior: 'smooth',
+	// 			block: 'start', // Ensures it aligns at the top of the viewport
+	// 		});
+	// 	}
+	// }, [moviesCollection]); // Trigger when the moviesCollection changes
 
 	return (
 		<div>

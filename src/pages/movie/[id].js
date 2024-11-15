@@ -44,8 +44,8 @@ const MovieId = () => {
 				setTrailer(trailerData.results[0]?.key);
 				console.log('trailer', trailer, trailerData.results[0]);
 			});
-			setShowTrailer(!showTrailer);
 		}
+		setShowTrailer(!showTrailer);
 	};
 
 	const handleShowCast = () => {
