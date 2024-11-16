@@ -1,5 +1,5 @@
 import React from 'react';
-import { useState, Suspense } from 'react';
+import { useState, Suspense, useEffect, useRef } from 'react';
 import { useRouter } from 'next/router';
 import {
 	fetchApiMovie,
@@ -7,7 +7,6 @@ import {
 	fetchApiReviews,
 	fetchTrailer,
 } from '../api/movies';
-import { useEffect } from 'react';
 import Link from 'next/link';
 import Loading from '../loading';
 import BackButton from '@/components/BackBtn';
@@ -27,6 +26,10 @@ const MovieId = () => {
 	const [showTrailer, setShowTrailer] = useState(false);
 	const router = useRouter();
 	const { id } = router.query;
+	// Refs for scrolling
+	const trailerRef = useRef(null);
+	const castRef = useRef(null);
+	const reviewsRef = useRef(null);
 
 	useEffect(() => {
 		if (id) {
@@ -44,6 +47,7 @@ const MovieId = () => {
 				setTrailers(trailerData.results);
 				console.log('trailer', trailerData.results);
 			});
+			trailerRef.current?.scrollIntoView({ behavior: 'smooth' });
 		}
 		setShowTrailer(!showTrailer);
 	};
@@ -54,6 +58,7 @@ const MovieId = () => {
 				setCast(castData.cast);
 				console.log('castData.cast', castData.cast);
 			});
+			castRef.current?.scrollIntoView({ behavior: 'smooth' });
 		}
 		setShowCast(!showCast);
 	};
@@ -64,6 +69,7 @@ const MovieId = () => {
 				setReviews(reviewsData.results);
 				console.log('reviewsData', reviewsData);
 			});
+			reviewsRef.current?.scrollIntoView({ behavior: 'smooth' });
 		}
 		setShowReviews(!showReviews);
 	};
@@ -150,19 +156,24 @@ const MovieId = () => {
 				</div>
 			</div>
 			<Suspense fallback={<Loading />}>
-				<Trailer
-					showTrailer={showTrailer}
-					trailers={trailers}
-				/>
-
-				<Cast
-					showCast={showCast}
-					cast={cast}
-				/>
-				<Reviews
-					showReviews={showReviews}
-					reviews={reviews}
-				/>
+				<div ref={trailerRef}>
+					<Trailer
+						showTrailer={showTrailer}
+						trailers={trailers}
+					/>
+				</div>
+				<div ref={castRef}>
+					<Cast
+						showCast={showCast}
+						cast={cast}
+					/>
+				</div>
+				<div ref={reviewsRef}>
+					<Reviews
+						showReviews={showReviews}
+						reviews={reviews}
+					/>
+				</div>
 			</Suspense>
 		</Layout>
 	);

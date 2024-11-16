@@ -3,15 +3,6 @@ import s from '../styles/gradients.module.css';
 import Loading from '@/pages/loading';
 
 const Trailer = ({ trailers, showTrailer }) => {
-	// useEffect(() => {
-	// 	if (trailer) {
-	// 		window.scrollTo({
-	// 			top: document.documentElement.scrollHeight,
-	// 			behavior: 'smooth',
-	// 		});
-	// 	}
-	// });
-
 	return (
 		<div className='mt-4'>
 			{showTrailer && (

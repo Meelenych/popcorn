@@ -1,0 +1,13 @@
+.shadowed {
+  box-shadow: var(--shadow);
+}
+
+.hovered {
+  transform: var(--transform-zero);
+  transition: var(--transitions);
+}
+
+.hovered:hover {
+  transform: var(--move-up);
+  box-shadow: var(--movie-hover);
+}
