@@ -44,9 +44,9 @@ const Actor = () => {
 			<BackButton />
 			<section className='mt-4'>
 				<div className='flex gap-4 flex-col md:flex-row'>
-					<div className='w-full md:w-1/4'>
+					<div className='w-full md:w-1/4 '>
 						<img
-							className='rounded-sm'
+							className='rounded-sm bg-[--background-secondary] p-1'
 							src={
 								actorData.profile_path
 									? `https://www.themoviedb.org/t/p/w440_and_h660_face/${actorData.profile_path}`

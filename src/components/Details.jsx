@@ -9,7 +9,7 @@ const Details = ({
 	handleShowTrailer,
 }) => {
 	return (
-		<div className='grid grid-cols-3 col-span-2 gap-4'>
+		<div className='grid grid-cols-3 col-span-3 gap-4'>
 			<button
 				onClick={handleShowCast}
 				className='btn'>

@@ -20,7 +20,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    background: var(--background-secondary);
+    /* background: var(--background-secondary); */
   }
 }
 

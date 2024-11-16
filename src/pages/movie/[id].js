@@ -23,7 +23,7 @@ const MovieId = () => {
 	const [showCast, setShowCast] = useState(false);
 	const [reviews, setReviews] = useState([]);
 	const [showReviews, setShowReviews] = useState(false);
-	const [trailer, setTrailer] = useState(null);
+	const [trailers, setTrailers] = useState(null);
 	const [showTrailer, setShowTrailer] = useState(false);
 	const router = useRouter();
 	const { id } = router.query;
@@ -41,8 +41,8 @@ const MovieId = () => {
 	const handleShowTrailer = () => {
 		if (!showTrailer) {
 			fetchTrailer(id).then(trailerData => {
-				setTrailer(trailerData.results[0]?.key);
-				console.log('trailer', trailer, trailerData.results[0]);
+				setTrailers(trailerData.results);
+				console.log('trailer', trailerData.results);
 			});
 		}
 		setShowTrailer(!showTrailer);
@@ -70,7 +70,7 @@ const MovieId = () => {
 
 	return (
 		<Layout>
-			<nav className='grid grid-cols-3 gap-4'>
+			<nav className='grid grid-cols-4 gap-4'>
 				<BackButton />
 				<Details
 					handleShowCast={handleShowCast}
@@ -152,7 +152,7 @@ const MovieId = () => {
 			<Suspense fallback={<Loading />}>
 				<Trailer
 					showTrailer={showTrailer}
-					trailerKey={trailer}
+					trailers={trailers}
 				/>
 
 				<Cast
