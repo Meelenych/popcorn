@@ -140,7 +140,6 @@ const MovieId = () => {
 					</p>
 					<p>Runtime: {movie?.runtime} min</p>
 					<p>Rating : {movie?.vote_average.toFixed()}/10</p>
-					<p>Video: {movie?.video ? 'available' : 'not available'}</p>
 					{movie?.homepage && (
 						<p className='text-ellipsis overflow-hidden'>
 							Homepage:{' '}

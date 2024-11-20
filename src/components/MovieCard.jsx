@@ -1,9 +1,15 @@
 import React from 'react';
 import Link from 'next/link';
 import { getGenreNames } from '@/helpers/genres';
+import OverviewHover from './OverviewHover';
 import styles from './MoviesList.module.css';
+import { useRouter } from 'next/router';
 
 const MovieCard = ({ movie, index, genres, ref }) => {
+	const router = useRouter();
+	const pageName = router.pathname.split('/')[1];
+
+	console.log('pageName', pageName);
 	return (
 		<div>
 			<li
@@ -12,7 +18,7 @@ const MovieCard = ({ movie, index, genres, ref }) => {
 				className='flex justify-center'>
 				<Link href={`/movie/${movie.id}`}>
 					<div
-						className={`rounded-sm bg-[--background-secondary] h-[420px] w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
+						className={`rounded-sm bg-[--background-secondary] h-[440px] w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
 						<img
 							className='rounded-sm'
 							src={
@@ -35,7 +41,11 @@ const MovieCard = ({ movie, index, genres, ref }) => {
 								Release date:{' '}
 								{new Date(movie?.release_date).toLocaleDateString('en-US')}
 							</p>
+							<p className='text-xs text-[--active]'>
+								Rating: {movie.vote_average.toFixed()}/10
+							</p>
 						</div>
+						{pageName === 'actors' && <OverviewHover movie={movie} />}
 					</div>
 				</Link>
 			</li>
