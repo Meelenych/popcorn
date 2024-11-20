@@ -12,10 +12,10 @@ const SearchPage = () => {
 		'alien',
 		'mission impossible',
 		'harry potter',
-		'dark knight',
+		'batman',
 		'the matrix',
-		'oceans eleven',
-		'home alone',
+		'star wars',
+		'x-men',
 	];
 
 	const [movies, setMovies] = useState([]);

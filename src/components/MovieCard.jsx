@@ -9,7 +9,7 @@ const MovieCard = ({ movie, index, genres }) => {
 	const router = useRouter();
 	const pageName = router.pathname.split('/')[1];
 
-	console.log('pageName', pageName, typeof pageName);
+	// console.log('pageName', pageName, typeof pageName);
 	return (
 		<li
 			key={`${movie.id}-${index}`}
