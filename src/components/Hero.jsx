@@ -44,15 +44,11 @@ const Hero = () => {
 			<ul className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-16'>
 				{randomMovies.map((movie, index) => {
 					return (
-						<li
-							key={movie.id}
-							className='flex justify-center'>
-							<MovieCard
-								movie={movie}
-								index={index}
-								genres={genres}
-							/>
-						</li>
+						<MovieCard
+							movie={movie}
+							index={index}
+							genres={genres}
+						/>
 					);
 				})}
 			</ul>

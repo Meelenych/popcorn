@@ -3,7 +3,7 @@ import { fetchActor, fetchFilmography } from '../api/actors';
 import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import BackButton from '@/components/BackBtn';
-import s from '../../styles/gradients.module.css';
+import s from '../../styles/gradient.module.css';
 import MovieCard from '@/components/MovieCard';
 
 const Actor = () => {

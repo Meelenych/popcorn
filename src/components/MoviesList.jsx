@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useMemo, useRef } from 'react';
-import { fetchApi } from '../pages/api/movies';
+import React, { useState, useEffect, useMemo } from 'react';
 import LoadMoreBtn from './LoadMoreBtn';
 import { fetchGenres } from '@/pages/api/genres';
 import MovieCard from './MovieCard';
 
-const MoviesList = ({ movies, submitValue, loadMoreSearchResults }) => {
+const MoviesList = ({ movies, loadMoreSearchResults }) => {
 	const [genres, setGenres] = useState([]);
 	const memoizedMovies = useMemo(() => movies, [movies]);
 
