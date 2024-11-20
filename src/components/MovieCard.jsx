@@ -2,10 +2,10 @@ import React from 'react';
 import Link from 'next/link';
 import { getGenreNames } from '@/helpers/genres';
 import OverviewHover from './OverviewHover';
-import styles from './MoviesList.module.css';
+import s from '../styles/hover.module.css';
 import { useRouter } from 'next/router';
 
-const MovieCard = ({ movie, index, genres, ref }) => {
+const MovieCard = ({ movie, index, genres }) => {
 	const router = useRouter();
 	const pageName = router.pathname.split('/')[1];
 
@@ -14,11 +14,10 @@ const MovieCard = ({ movie, index, genres, ref }) => {
 		<div>
 			<li
 				key={`${movie.id}-${index}`}
-				ref={ref}
 				className='flex justify-center'>
 				<Link href={`/movie/${movie.id}`}>
 					<div
-						className={`rounded-sm bg-[--background-secondary] h-[440px] w-[240px] p-1 ${styles.card__shadow} ${styles.movie__card}`}>
+						className={`rounded-sm bg-[--background-secondary] h-[440px] w-[240px] p-1 ${s.shadowed} ${s.hovered}`}>
 						<img
 							className='rounded-sm'
 							src={

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import styles from './MoviesList.module.css';
-import s from '../styles/gradients.module.css';
+import styles from '../styles/hover.module.css';
+import s from '../styles/gradient.module.css';
 
 const Cast = ({ showCast, cast }) => {
 	return (
@@ -16,7 +16,7 @@ const Cast = ({ showCast, cast }) => {
 						{cast.map(actor => (
 							<li
 								key={actor.id}
-								className={`text-sm font-medium p-1 bg-[--background-secondary] rounded-sm ${styles.movie__card}`}>
+								className={`text-sm font-medium p-1 bg-[--background-secondary] rounded-sm ${styles.hovered}`}>
 								<Link href={`/actors/${actor.id}`}>
 									<div>
 										<img

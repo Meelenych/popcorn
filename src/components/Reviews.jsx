@@ -1,5 +1,5 @@
 import React from 'react';
-import s from '../styles/gradients.module.css';
+import s from '../styles/gradient.module.css';
 
 const Reviews = ({ showReviews, reviews }) => {
 	console.log('reviews', reviews);

@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect } from 'react';
-import s from '../styles/gradients.module.css';
+import React, { Suspense } from 'react';
+import s from '../styles/gradient.module.css';
 import Loading from '@/pages/loading';
 
 const Trailer = ({ trailers, showTrailer }) => {
