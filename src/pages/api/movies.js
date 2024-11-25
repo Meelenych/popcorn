@@ -93,7 +93,7 @@ async function fetchTrailer(IdValue) {
 
 	const response = await fetch(url);
 	if (!response.ok) {
-		throw new Error('Failed to fetch actor data');
+		throw new Error('Failed to fetch trailer data');
 	}
 
 	const trailer = await response.json();
@@ -103,13 +103,13 @@ async function fetchTrailer(IdValue) {
 export { fetchTrailer };
 
 // Upcoming
-async function fetchUpcoming() {
-	const params = `movie/upcoming?api_key=${API_KEY}`;
+async function fetchUpcoming(page) {
+	const params = `movie/upcoming?api_key=${API_KEY}&page=${page}&include_adult=false`;
 	const url = baseUrl + params;
 
 	const response = await fetch(url);
 	if (!response.ok) {
-		throw new Error('Failed to fetch actor data');
+		throw new Error('Failed to fetch upcoming data');
 	}
 	const upcoming = await response.json();
 	return upcoming;

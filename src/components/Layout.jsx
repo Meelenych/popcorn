@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import localFont from 'next/font/local';
 import Header from './Header';
 import GoUp from './GoUp';
@@ -10,13 +11,16 @@ const geistSans = localFont({
 });
 
 const Layout = ({ children }) => {
+	const router = useRouter();
+	const pageName = router.pathname.split('/')[1];
+
 	return (
 		<div
 			className={`${geistSans.variable} min-h-screen font-[family-name:var(--font-geist-sans)] `}>
 			<Header />
 			<main className='h-max bg-[--background] text-[--accent] px-4 relative'>
 				<div className=''>{children}</div>
-				<GoUp />
+				{pageName !== '' && <GoUp />}
 			</main>
 			{/* <Footer /> */}
 		</div>
