@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { getGenreNames } from '@/helpers/genres';
 import OverviewHover from './OverviewHover';
 import s from '../styles/hover.module.css';
-import { useRouter } from 'next/router';
 
 const MovieCard = ({ movie, index, genres }) => {
 	const router = useRouter();
@@ -47,7 +47,10 @@ const MovieCard = ({ movie, index, genres }) => {
 						</p>
 					</div>
 					{(pageName === 'actors' || pageName === '') && (
-						<OverviewHover movie={movie} />
+						<OverviewHover
+							movie={movie}
+							pageName={pageName}
+						/>
 					)}
 				</div>
 			</Link>
