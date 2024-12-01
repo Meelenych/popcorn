@@ -14,11 +14,17 @@ const Hero = () => {
 		fetchUpcoming(page)
 			.then(movieData => {
 				setHeroMovies([...movieData.results]);
-				console.log('hero', movieData, heroMovies);
+				// console.log('hero', movieData, heroMovies);
+				setInterval(() => {
+					setPage(page + 1);
+					setHeroMovies([...heroMovies, ...movieData.results]);
+					// console.log('hero2', movieData, heroMovies);
+				}, 35000);
 			})
 			.catch(err => {
 				console.log(err);
 			});
+		return () => clearInterval();
 	}, [page]);
 
 	useEffect(() => {
@@ -31,8 +37,7 @@ const Hero = () => {
 		// Start the interval to fetch new random movies every 15 seconds
 		intervalRef.current = setInterval(() => {
 			setRandomMovies(getRandomMovies(heroMovies, 3));
-			setPage(page + 1);
-		}, 15000);
+		}, 30000);
 		return () => clearInterval(intervalRef.current);
 	}, [heroMovies]);
 

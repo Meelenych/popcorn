@@ -9,12 +9,14 @@ const MovieCard = ({ movie, index, genres }) => {
 	const router = useRouter();
 	const pageName = router.pathname.split('/')[1];
 
-	// console.log('pageName', pageName, typeof pageName);
+	console.log('pageName', pageName, typeof pageName);
+	console.log('movie-serie', movie);
 	return (
 		<li
 			key={`${movie.id}-${index}`}
 			className='flex justify-center'>
-			<Link href={`/movie/${movie.id}`}>
+			<Link
+				href={pageName === 'series' ? `/serie/${movie.id}` : `/movie/${movie.id}`}>
 				<div
 					className={`rounded-sm bg-[--background-secondary] h-[440px] w-[240px] p-1 ${
 						s.shadowed

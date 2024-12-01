@@ -19,6 +19,16 @@ const Header = () => {
 				href='/search'>
 				Search
 			</Link>
+			<Link
+				className='link-accent hover:text-[--accent] active:text-[--active]'
+				href='/theaters'>
+				In theaters now
+			</Link>
+			<Link
+				className='link-accent hover:text-[--accent] active:text-[--active]'
+				href='/series'>
+				TV Shows
+			</Link>
 		</div>
 	);
 };
