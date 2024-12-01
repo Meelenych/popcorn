@@ -3,8 +3,8 @@ import { fetchActor, fetchFilmography } from '../api/actors';
 import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import BackButton from '@/components/BackBtn';
-import s from '../../styles/gradient.module.css';
 import MovieCard from '@/components/MovieCard';
+import s from '../../styles/gradient.module.css';
 
 const Actor = () => {
 	const router = useRouter();
@@ -78,6 +78,24 @@ const Actor = () => {
 					})}
 				</ul>
 			</section>
+			{filmography?.crew?.length !== 0 && (
+				<section className='mt-4'>
+					<h3
+						className={`${s.candy} text-4xl text-center tracking-widest uppercase font-bold text-white p-4 mb-4`}>
+						Filmography as director
+					</h3>
+					<ul className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 xl:grid-cols-6 gap-4'>
+						{filmography?.crew?.map((movie, index) => {
+							return (
+								<MovieCard
+									movie={movie}
+									index={index}
+								/>
+							);
+						})}
+					</ul>
+				</section>
+			)}
 		</Layout>
 	);
 };

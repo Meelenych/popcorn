@@ -15,6 +15,8 @@ import Layout from '@/components/Layout';
 import Trailer from '@/components/Trailer';
 import Cast from '@/components/Cast';
 import Reviews from '@/components/Reviews';
+import styles from '../../styles/gradient.module.css';
+import s from '../../styles/hover.module.css';
 
 const MovieId = () => {
 	const [movie, setMovie] = useState(null);
@@ -24,6 +26,7 @@ const MovieId = () => {
 	const [showReviews, setShowReviews] = useState(false);
 	const [trailers, setTrailers] = useState(null);
 	const [showTrailer, setShowTrailer] = useState(false);
+	const [directors, setDirectors] = useState([]);
 	const router = useRouter();
 	const { id } = router.query;
 	// Refs for scrolling
@@ -56,7 +59,14 @@ const MovieId = () => {
 		if (!showCast) {
 			fetchApiCredits(id).then(castData => {
 				setCast(castData.cast);
-				console.log('castData.cast', castData.cast);
+				setDirectors(
+					castData.crew.filter(crewMember => crewMember.job === 'Director'),
+				);
+				// console.log('castData.cast', castData.cast, castData);
+				console.log(
+					'crew',
+					castData.crew.filter(crewMember => crewMember.job === 'Director'),
+				);
 			});
 			castRef.current?.scrollIntoView({ behavior: 'smooth' });
 		}
@@ -151,6 +161,49 @@ const MovieId = () => {
 								{movie.homepage}
 							</Link>
 						</p>
+					)}
+					{movie?.production_companies.length !== 0 && (
+						<ul className='bg-white/90 p-3 rounded flex justify-center'>
+							{movie?.production_companies.map(company => {
+								return (
+									<li
+										key={company.id}
+										className='mr-4 last:mr-0'>
+										<img
+											src={`https://image.tmdb.org/t/p/w500${company.logo_path}`}
+											alt={company.name}
+											width={200}
+										/>
+									</li>
+								);
+							})}
+						</ul>
+					)}
+					{showCast && (
+						<>
+							<h4
+								className={`${styles.candy} text-xl text-white text-center p-1 mt-4`}>
+								{directors.length > 1 ? 'Directors' : 'Director'}
+							</h4>
+							<ul className='flex'>
+								{directors.map(director => {
+									return (
+										<li
+											key={director.id}
+											className={`${s.hovered} mt-4 mr-4 last:mr-0 bg-[--background-secondary] p-1 rounded`}>
+											<Link href={`/actors/${director.id}`}>
+												<img
+													src={`https://image.tmdb.org/t/p/w342/${director.profile_path}`}
+													alt={director.name}
+													width={200}
+												/>
+												{director.name}
+											</Link>
+										</li>
+									);
+								})}
+							</ul>
+						</>
 					)}
 				</div>
 			</div>

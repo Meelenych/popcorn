@@ -128,28 +128,26 @@ const SerieId = () => {
 							))}
 						</p>
 						<p>For adults: {serie?.adult ? 'yes' : 'no'}</p>
-						<div>
+						<ul className='flex'>
 							Created by:{' '}
 							{serie?.created_by.map((creator, index, id) => {
 								return (
-									<div key={id + index}>
-										<Link
-											className='relative underline hover:text-[--text-color] group'
-											href={serie.homepage}>
+									<li key={id + index}>
+										<div className='relative underline hover:text-[--text-color] group'>
 											<div className='absolute bottom-5 left-0 bg-[--background-secondary] p-1 rounded hidden group-hover:block'>
 												<img
 													src={`https://image.tmdb.org/t/p/w500${creator.profile_path}`}
 													alt={creator.name}
-													width={50}
+													width={100}
 												/>
 											</div>
 											<span>{creator.name}</span>
-										</Link>
-										<span>{index === serie.created_by.length - 1 ? '' : ', '}</span>
-									</div>
+											<span>{index === serie.created_by.length - 1 ? '' : ', '}</span>
+										</div>
+									</li>
 								);
 							})}
-						</div>
+						</ul>
 						<p>Popularity: {serie?.popularity}</p>
 						<p>
 							Release date:{' '}
@@ -159,6 +157,8 @@ const SerieId = () => {
 							Last episode date:{' '}
 							{new Date(serie?.last_air_date).toLocaleDateString('en-US')}
 						</p>
+						<p>Still in production: {serie?.in_production ? 'yes' : 'no'}</p>
+						<p>Status: {serie?.status}</p>
 						<p>Seasons: {serie?.number_of_seasons}</p>
 						<p>Episodes: {serie?.number_of_episodes}</p>
 						<p>Status: {serie?.status}</p>
@@ -176,17 +176,19 @@ const SerieId = () => {
 							</p>
 						)}
 						{serie?.networks.length !== 0 && (
-							<div className='bg-white/90 p-3 rounded flex justify-center'>
+							<ul className='bg-white/90 p-3 rounded flex justify-center'>
 								{serie?.networks.map(network => {
 									return (
-										<img
-											src={`https://image.tmdb.org/t/p/w500${network.logo_path}`}
-											alt={network.name}
-											width={200}
-										/>
+										<li key={network.id}>
+											<img
+												src={`https://image.tmdb.org/t/p/w500${network.logo_path}`}
+												alt={network.name}
+												width={200}
+											/>
+										</li>
 									);
 								})}
-							</div>
+							</ul>
 						)}
 					</div>
 				</div>
