@@ -16,9 +16,9 @@ const Layout = ({ children }) => {
 
 	return (
 		<div
-			className={`${geistSans.variable} min-h-screen font-[family-name:var(--font-geist-sans)] `}>
+			className={`${geistSans.variable} min-h-screen font-[family-name:var(--font-geist-sans)]`}>
 			<Header />
-			<main className='h-max bg-[--background] text-[--accent] px-4 relative'>
+			<main className='h-max bg-[--background] text-[--accent] px-4'>
 				<div className=''>{children}</div>
 				{pageName !== '' && <GoUp />}
 			</main>
