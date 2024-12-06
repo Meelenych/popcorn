@@ -206,21 +206,26 @@ const SerieId = () => {
 										(s.shadowed, s.hovered)
 									}`}>
 									<h4 className='text-xl text-white text-center p-1'>{season.name}</h4>
-									<img
-										src={
-											season.poster_path
-												? `https://image.tmdb.org/t/p/w500${season.poster_path}`
-												: '/images/dummy.jpg'
-										}
-										alt={season.name}
-									/>
-									<p>
-										Air Date: {new Date(season.air_date).toLocaleDateString('en-US')}
-									</p>
-									<p>Episodes: {season.episode_count}</p>
-									<p className='text-[--active]'>
-										Rating: {season?.vote_average.toFixed()}/10
-									</p>
+									<div className='overflow-hidden'>
+										<img
+											className='w-full'
+											src={
+												season.poster_path
+													? `https://image.tmdb.org/t/p/w500${season.poster_path}`
+													: '/images/dummy.jpg'
+											}
+											alt={season.name}
+										/>
+									</div>
+									<div className='p-2'>
+										<p>
+											Air Date: {new Date(season.air_date).toLocaleDateString('en-US')}
+										</p>
+										<p>Episodes: {season.episode_count}</p>
+										<p className='text-[--active]'>
+											Rating: {season?.vote_average.toFixed()}/10
+										</p>
+									</div>
 									<OverviewHover movie={season} />
 								</div>
 							);

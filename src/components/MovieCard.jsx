@@ -1,19 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { getGenreNames } from '@/helpers/genres';
+import { fetchGenres } from '@/pages/api/genres';
 import OverviewHover from './OverviewHover';
 import s from '../styles/hover.module.css';
 
-const MovieCard = ({ movie, index, genres }) => {
+const MovieCard = ({ movie, index }) => {
+	const [genres, setGenres] = useState([]);
 	const router = useRouter();
 	const pageName = router.pathname.split('/')[1];
 
-	console.log('pageName', pageName, typeof pageName);
-	console.log('movie-serie', movie);
+	useEffect(() => {
+		fetchGenres().then(result => setGenres(result));
+	}, []);
+
+	console.log('genres card', getGenreNames(movie.genre_ids, genres));
+	// console.log('pageName', pageName, typeof pageName);
+	// console.log('movie-serie', movie);
 	return (
 		<li
-			key={`${movie.id}-${index}`}
+			key={`${movie.id}+${index}`}
 			className='flex justify-center'>
 			<Link
 				href={pageName === 'series' ? `/serie/${movie.id}` : `/movie/${movie.id}`}>

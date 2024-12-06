@@ -1,15 +1,9 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import LoadMoreBtn from './LoadMoreBtn';
-import { fetchGenres } from '@/pages/api/genres';
 import MovieCard from './MovieCard';
 
 const MoviesList = ({ movies, loadMoreSearchResults }) => {
-	const [genres, setGenres] = useState([]);
 	const memoizedMovies = useMemo(() => movies, [movies]);
-
-	useEffect(() => {
-		fetchGenres().then(result => setGenres(result));
-	}, []);
 
 	return (
 		<div>
@@ -18,7 +12,6 @@ const MoviesList = ({ movies, loadMoreSearchResults }) => {
 					<MovieCard
 						movie={movie}
 						index={index}
-						genres={genres}
 					/>
 				))}
 				<LoadMoreBtn onClick={loadMoreSearchResults} />
