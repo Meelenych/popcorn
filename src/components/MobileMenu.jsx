@@ -14,7 +14,7 @@ const MobileMenu = () => {
 		<div className='relative'>
 			{/* Hamburger Icon */}
 			<button
-				className='p-2 text-[--textColor]'
+				className='p-2 text-[--textColor] hover:text-[--accent] active:text-[--active]'
 				onClick={toggleMenu}
 				aria-label='Toggle menu'>
 				<svg
@@ -38,7 +38,7 @@ const MobileMenu = () => {
 				} ${s.shadowed}`}>
 				<div className='p-4'>
 					<button
-						className='mb-4 p-2 text-[--textColor]'
+						className='mb-4 p-2 text-[--textColor] hover:text-[--accent] active:text-[--active]'
 						onClick={toggleMenu}
 						aria-label='Close menu'>
 						<svg
