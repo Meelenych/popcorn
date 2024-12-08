@@ -59,7 +59,7 @@ const SearchPage = () => {
 		}
 	};
 
-	console.log('search movies', submitValue, movies);
+	// console.log('search movies', submitValue, movies);
 
 	return (
 		<Layout>

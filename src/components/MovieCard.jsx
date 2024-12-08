@@ -15,7 +15,7 @@ const MovieCard = ({ movie, index }) => {
 		fetchGenres().then(result => setGenres(result));
 	}, []);
 
-	console.log('genres card', getGenreNames(movie.genre_ids, genres));
+	// console.log('genres card', getGenreNames(movie.genre_ids, genres));
 	// console.log('pageName', pageName, typeof pageName);
 	// console.log('movie-serie', movie);
 	return (

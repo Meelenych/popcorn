@@ -1,34 +1,39 @@
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const Navigation = () => {
+	const pathname = usePathname();
+
+	const activeLink =
+		'bg-gradient-to-b from-[--background] to-[--background-secondary] rounded-md link-accent hover:text-[--accent] active:text-[--active]';
 	return (
 		<>
 			<nav
 				className={`flex-col md:flex-row gap-7 md:gap-3 flex justify-around w-full text-xl font-light`}>
 				<Link
-					className='link-accent hover:text-[--accent] active:text-[--active]'
+					className={pathname === '/' && activeLink}
 					href='/'>
-					Home
+					<div className='py-2 px-6'>Home</div>
 				</Link>
 				<Link
-					className='link-accent hover:text-[--accent] active:text-[--active]'
+					className={pathname === '/trending' && activeLink}
 					href='/trending'>
-					Trending
+					<div className='py-2 px-6'>Trending</div>
 				</Link>
 				<Link
-					className='link-accent hover:text-[--accent] active:text-[--active]'
+					className={pathname === '/search' && activeLink}
 					href='/search'>
-					Search
+					<div className='py-2 px-6'>Search</div>
 				</Link>
 				<Link
-					className='link-accent hover:text-[--accent] active:text-[--active]'
+					className={pathname === '/theaters' && activeLink}
 					href='/theaters'>
-					In theaters now
+					<div className='py-2 px-6'>In theaters now</div>
 				</Link>
 				<Link
-					className='link-accent hover:text-[--accent] active:text-[--active]'
+					className={pathname === '/series' && activeLink}
 					href='/series'>
-					TV Shows
+					<div className='py-2 px-6'>TV Shows</div>
 				</Link>
 			</nav>
 		</>
