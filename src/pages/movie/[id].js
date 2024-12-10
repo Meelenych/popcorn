@@ -202,6 +202,12 @@ const MovieId = () => {
 												<img
 													src={`https://image.tmdb.org/t/p/w342/${director.profile_path}`}
 													alt={director.name}
+													onError={e =>
+														(e.target.src =
+															director?.gender === 2
+																? '/images/dummyMan.jpg'
+																: '/images/dummyWoman.jpg')
+													}
 												/>
 												{director.name}
 											</Link>

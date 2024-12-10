@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import Layout from '@/components/Layout';
 import BackButton from '@/components/BackBtn';
 import MovieCard from '@/components/MovieCard';
+import { getPopularityLabel } from '../../helpers/popularity';
 import s from '../../styles/gradient.module.css';
 
 const Actor = () => {
@@ -49,7 +50,9 @@ const Actor = () => {
 							src={
 								actorData.profile_path
 									? `https://www.themoviedb.org/t/p/w440_and_h660_face/${actorData.profile_path}`
-									: '/images/dummy.jpg'
+									: actorData?.gender === 2
+									? '/images/dummyMan.jpg'
+									: '/images/dummyWoman.jpg'
 							}
 							loading='lazy'
 							alt={actorData.name}
@@ -58,6 +61,14 @@ const Actor = () => {
 					</div>
 					<div className='w-full lg:w-1/2'>
 						<h1 className='text-3xl mb-4'>{actorData.name}</h1>
+						<p>Birthday: {actorData.birthday}</p>
+						{actorData.deathday && <p>Deathday: {actorData.deathday}</p>}
+						{actorData.place_of_birth && (
+							<p>Place of birth: {actorData.place_of_birth}</p>
+						)}
+						{actorData.popularity && (
+							<p>Popularity: {getPopularityLabel(actorData.popularity)}</p>
+						)}
 						<p>{actorData.biography}</p>
 					</div>
 				</div>
