@@ -61,7 +61,7 @@ const Actor = () => {
 					</div>
 					<div className='w-full lg:w-1/2'>
 						<h1 className='text-3xl mb-4'>{actorData.name}</h1>
-						<p>Birthday: {actorData.birthday}</p>
+						{actorData.birthday && <p>Birthday: {actorData.birthday}</p>}
 						{actorData.deathday && <p>Deathday: {actorData.deathday}</p>}
 						{actorData.place_of_birth && (
 							<p>Place of birth: {actorData.place_of_birth}</p>

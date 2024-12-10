@@ -15,6 +15,7 @@ import Layout from '@/components/Layout';
 import Trailer from '@/components/Trailer';
 import Cast from '@/components/Cast';
 import Reviews from '@/components/Reviews';
+import { getPopularityLabel } from '@/helpers/popularity';
 import styles from '../../styles/gradient.module.css';
 import s from '../../styles/hover.module.css';
 
@@ -144,7 +145,7 @@ const MovieId = () => {
 					<p>For adults: {movie?.adult ? 'yes' : 'no'}</p>
 					<p>Budget: ${movie?.budget.toLocaleString('en-US')}</p>
 					<p>Revenue: ${movie?.revenue.toLocaleString('en-US')}</p>
-					<p>Popularity: {movie?.popularity}</p>
+					<p>Popularity: {getPopularityLabel(movie?.popularity)}</p>
 					<p>
 						Release date: {new Date(movie?.release_date).toLocaleDateString('en-US')}
 					</p>
