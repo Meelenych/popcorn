@@ -8,43 +8,51 @@ const Hero = () => {
 	const [randomMovies, setRandomMovies] = useState([]);
 	const [genres, setGenres] = useState([]);
 	const [page, setPage] = useState(1);
-	const intervalRef = useRef(null);
 
-	useEffect(() => {
-		fetchUpcoming(page)
-			.then(movieData => {
-				setHeroMovies([...movieData.results]);
-				// console.log('hero', movieData, heroMovies);
-				setInterval(() => {
-					setPage(page + 1);
-					setHeroMovies([...heroMovies, ...movieData.results]);
-					// console.log('hero2', movieData, heroMovies);
-				}, 35000);
-			})
-			.catch(err => {
-				console.log(err);
-			});
-		return () => clearInterval();
-	}, [page]);
+	const getRandomMovies = (movies, num) => {
+		const shuffled = [...movies].sort(() => Math.random() - 0.5);
+		return shuffled.slice(0, num);
+	};
 
-	useEffect(() => {
-		if (heroMovies.length === 0) return;
-		setRandomMovies(heroMovies.slice(0, 3));
-		const getRandomMovies = (movies, num) => {
-			const shuffled = [...movies].sort(() => Math.random() - 0.5);
-			return shuffled.slice(0, num);
-		};
-		// Start the interval to fetch new random movies every 15 seconds
-		intervalRef.current = setInterval(() => {
-			setRandomMovies(getRandomMovies(heroMovies, 3));
-		}, 30000);
-		return () => clearInterval(intervalRef.current);
-	}, [heroMovies]);
+	const fetchMovies = async pageNumber => {
+		try {
+			const movieData = await fetchUpcoming(pageNumber);
+			setHeroMovies(prevMovies => [...prevMovies, ...movieData.results]);
+		} catch (err) {
+			console.error('Error fetching movies:', err);
+		}
+	};
 
 	useEffect(() => {
 		fetchGenres().then(result => setGenres(result));
 	}, []);
 
+	useEffect(() => {
+		let fetchInterval;
+		const startInterval = () => {
+			fetchInterval = setInterval(() => {
+				setPage(prevPage => {
+					if (prevPage < 5) return prevPage + 1;
+					clearInterval(fetchInterval);
+					return prevPage;
+				});
+			}, 5000);
+		};
+		fetchMovies(page);
+		startInterval();
+		return () => clearInterval(fetchInterval);
+	}, [page]);
+
+	useEffect(() => {
+		setRandomMovies(heroMovies.slice(0, 3));
+		const randomInterval = setInterval(() => {
+			setRandomMovies(getRandomMovies(heroMovies, 3));
+		}, 30000);
+
+		return () => clearInterval(randomInterval);
+	}, [heroMovies]);
+
+	console.log('heroMovies', heroMovies);
 	return (
 		<div className='h-full'>
 			<h1 className='text-3xl mb-5 text-center'>Popcorn time</h1>

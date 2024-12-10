@@ -9,3 +9,14 @@
   text-shadow: 3px 3px 3px var(--background);
   border-radius: 2px;
 }
+
+.abbyss {
+  /* outline: 1px solid tomato; */
+  height: 200px;
+  width: 100%;
+  background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0));
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+}

@@ -170,32 +170,38 @@ const MovieId = () => {
 										key={company.id}
 										className='mr-4 last:mr-0'>
 										<img
-											src={`https://image.tmdb.org/t/p/w500${company.logo_path}`}
+											src={`https://image.tmdb.org/t/p/w500${
+												company.logo_path ? company.logo_path : null
+											}`}
 											alt={company.name}
 											width={200}
+											onError={e => (e.target.src = '/images/logodummy.svg')}
 										/>
 									</li>
 								);
 							})}
 						</ul>
 					)}
+				</div>
+				<div className='w-full md:w-1/6'>
 					{showCast && (
 						<>
 							<h4
-								className={`${styles.candy} text-xl text-white text-center p-1 mt-4`}>
+								className={`${styles.candy} text-4xl uppercase font-bold tracking-widest md:text-xl text-white text-center p-4 md:p-1 mt-4 md:mt-0`}>
 								{directors.length > 1 ? 'Directors' : 'Director'}
 							</h4>
-							<ul className='flex'>
+							<ul className='flex justify-center'>
 								{directors.map(director => {
 									return (
 										<li
 											key={director.id}
-											className={`${s.hovered} mt-4 mr-4 last:mr-0 bg-[--background-secondary] p-1 rounded`}>
-											<Link href={`/actors/${director.id}`}>
+											className={`${s.hovered} mt-4 mr-4 last:mr-0 bg-[--background-secondary] p-1 rounded text-center`}>
+											<Link
+												href={`/actors/${director.id}`}
+												className=''>
 												<img
 													src={`https://image.tmdb.org/t/p/w342/${director.profile_path}`}
 													alt={director.name}
-													width={200}
 												/>
 												{director.name}
 											</Link>

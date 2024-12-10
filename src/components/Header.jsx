@@ -19,6 +19,12 @@ const Header = () => {
 				return 'In theaters now';
 			case 'series':
 				return 'TV Shows';
+			case 'movie':
+				return 'Movie details';
+			case 'actors':
+				return 'Person details';
+			case 'serie':
+				return 'Show details';
 			default:
 				return 'Unknown Page';
 		}
