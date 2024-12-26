@@ -5,7 +5,8 @@ const Navigation = () => {
 	const pathname = usePathname();
 
 	const activeLink =
-		'bg-gradient-to-b from-[--background] to-[--background-secondary] rounded-md link-accent hover:text-[--accent] active:text-[--active]';
+		// 'bg-gradient-to-b from-[--background] to-[--background-secondary] rounded-md link-accent hover:text-[--accent] active:text-[--active]';
+		'border-b-2 border-[--accent] rounded-sm text-[--active]';
 	return (
 		<>
 			<nav
