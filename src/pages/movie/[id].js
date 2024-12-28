@@ -99,7 +99,7 @@ const MovieId = () => {
 				/>
 			</nav>
 
-			<div className='pt-4 flex flex-col md:flex-row gap-6'>
+			<div className='pt-4 flex flex-col md:flex-row gap-6 text-[--text-color]'>
 				<div
 					className={`rounded-sm bg-[--background-secondary] p-1 w-full md:w-1/3 h-[720px] relative`}>
 					<img
@@ -210,7 +210,7 @@ const MovieId = () => {
 																: '/images/dummyWoman.jpg')
 													}
 												/>
-												{director.name}
+												<p className='p-2 text-[--text-color]'>{director.name}</p>
 											</Link>
 										</li>
 									);

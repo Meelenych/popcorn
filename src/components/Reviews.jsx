@@ -29,7 +29,7 @@ const Reviews = ({ showReviews, reviews }) => {
 											/>
 										</div>
 										<div>
-											<p className='text-[--active]'>
+											<p className='text-lg text-[--active]'>
 												Rating: {review.author_details.rating}/10
 											</p>
 											<p className='text-lg font-semibold'>{review.author}</p>
