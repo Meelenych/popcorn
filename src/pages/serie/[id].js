@@ -84,7 +84,7 @@ const SerieId = () => {
 			</nav>
 
 			<div className='pt-4'>
-				<div className='flex flex-col md:flex-row gap-6'>
+				<div className='flex flex-col md:flex-row gap-6 text-[--text-color]'>
 					<div
 						className={`rounded-sm bg-[--background-secondary] p-1 w-full md:w-1/3 h-[720px] relative`}>
 						<img
@@ -167,7 +167,7 @@ const SerieId = () => {
 							<p className='text-ellipsis overflow-hidden'>
 								Homepage:{' '}
 								<Link
-									className='underline hover:text-[--text-color]'
+									className='underline hover:text-[--accent]'
 									href={serie.homepage}
 									target='_blank'
 									rel='noopener noreferrer'>
