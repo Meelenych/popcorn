@@ -51,7 +51,10 @@ const MovieId = () => {
 				setTrailers(trailerData.results);
 				console.log('trailer', trailerData.results);
 			});
-			trailerRef.current?.scrollIntoView({ behavior: 'smooth' });
+			trailerRef.current?.scrollIntoView({
+				block: 'end',
+				behavior: 'smooth',
+			});
 		}
 		setShowTrailer(!showTrailer);
 	};
@@ -69,7 +72,7 @@ const MovieId = () => {
 					castData.crew.filter(crewMember => crewMember.job === 'Director'),
 				);
 			});
-			castRef.current?.scrollIntoView({ behavior: 'smooth' });
+			castRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
 		}
 		setShowCast(!showCast);
 	};
@@ -80,7 +83,7 @@ const MovieId = () => {
 				setReviews(reviewsData.results);
 				console.log('reviewsData', reviewsData);
 			});
-			reviewsRef.current?.scrollIntoView({ behavior: 'smooth' });
+			reviewsRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
 		}
 		setShowReviews(!showReviews);
 	};
