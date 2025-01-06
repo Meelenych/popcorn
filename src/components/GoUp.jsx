@@ -12,7 +12,7 @@ export default function GoUp() {
 		<>
 			<button
 				onClick={scrollToTop}
-				className={`${s.hovered} ${s.shadowed} fixed bottom-20 right-12 z-50 text-3xl font-normal btn border-2 rounded-full btn-outline hover:bg-[--background-secondary] h-12 w-12`}>
+				className={`${s.hovered} ${s.shadowed} fixed bottom-20 right-7 z-50 text-3xl font-normal btn border-2 rounded-full btn-outline hover:bg-[--background-secondary] h-12 w-12`}>
 				↑
 			</button>
 		</>
