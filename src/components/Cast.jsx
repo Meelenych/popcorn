@@ -10,7 +10,7 @@ const Cast = ({ showCast, cast }) => {
 				<section>
 					<h3
 						className={`${s.candy} text-4xl text-center tracking-widest uppercase font-bold text-white p-4 mb-4 `}>
-						Cast
+						{cast?.length > 0 ? 'cast' : 'No cast available'}
 					</h3>
 					<ul className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4'>
 						{cast.map(actor => (

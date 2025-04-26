@@ -10,7 +10,11 @@ const Trailer = ({ trailers, showTrailer }) => {
 				<section>
 					<h3
 						className={`${s.candy} text-4xl text-center tracking-widest uppercase font-bold text-white p-4 mb-4 `}>
-						{trailers?.length > 1 ? 'trailers' : 'trailer'}
+						{trailers?.length > 0
+							? trailers?.length > 1
+								? 'trailers'
+								: `trailer`
+							: 'No trailers available'}
 					</h3>
 					{trailers?.length !== 0 &&
 						trailers?.map(trailer => {

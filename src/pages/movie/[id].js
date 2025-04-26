@@ -63,9 +63,7 @@ const MovieId = () => {
 		if (!showCast) {
 			fetchApiCredits(id).then(castData => {
 				setCast(castData.cast);
-				setDirectors(
-					castData.crew.filter(crewMember => crewMember.job === 'Director'),
-				);
+				setDirectors(castData.crew.filter(crewMember => crewMember.job === 'Director'));
 				// console.log('castData.cast', castData.cast, castData);
 				console.log(
 					'crew',
@@ -149,9 +147,7 @@ const MovieId = () => {
 					<p>Budget: ${movie?.budget.toLocaleString('en-US')}</p>
 					<p>Revenue: ${movie?.revenue.toLocaleString('en-US')}</p>
 					<p>Popularity: {getPopularityLabel(movie?.popularity)}</p>
-					<p>
-						Release date: {new Date(movie?.release_date).toLocaleDateString('en-US')}
-					</p>
+					<p>Release date: {new Date(movie?.release_date).toLocaleDateString('en-US')}</p>
 					<p>Runtime: {movie?.runtime} min</p>
 					<p>Rating : {movie?.vote_average.toFixed()}/10</p>
 					{movie?.homepage && (
@@ -170,9 +166,7 @@ const MovieId = () => {
 						<ul className='bg-white/90 p-3 rounded flex justify-center'>
 							{movie?.production_companies.map(company => {
 								return (
-									<li
-										key={company.id}
-										className='mr-4 last:mr-0'>
+									<li key={company.id} className='mr-4 last:mr-0'>
 										<img
 											src={`https://image.tmdb.org/t/p/w500${
 												company.logo_path ? company.logo_path : null
@@ -200,9 +194,7 @@ const MovieId = () => {
 										<li
 											key={director.id}
 											className={`${s.hovered} mt-4 mr-4 last:mr-0 bg-[--background-secondary] p-1 rounded text-center`}>
-											<Link
-												href={`/actors/${director.id}`}
-												className=''>
+											<Link href={`/actors/${director.id}`} className=''>
 												<img
 													src={`https://image.tmdb.org/t/p/w342/${director.profile_path}`}
 													alt={director.name}
@@ -225,22 +217,13 @@ const MovieId = () => {
 			</div>
 			<Suspense fallback={<Loading />}>
 				<div ref={trailerRef}>
-					<Trailer
-						showTrailer={showTrailer}
-						trailers={trailers}
-					/>
+					<Trailer showTrailer={showTrailer} trailers={trailers} />
 				</div>
 				<div ref={castRef}>
-					<Cast
-						showCast={showCast}
-						cast={cast}
-					/>
+					<Cast showCast={showCast} cast={cast} />
 				</div>
 				<div ref={reviewsRef}>
-					<Reviews
-						showReviews={showReviews}
-						reviews={reviews}
-					/>
+					<Reviews showReviews={showReviews} reviews={reviews} />
 				</div>
 			</Suspense>
 		</Layout>
