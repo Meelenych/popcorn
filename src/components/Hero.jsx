@@ -2,10 +2,12 @@ import React, { useEffect, useState, useRef } from 'react';
 import { fetchUpcoming } from '@/pages/api/movies';
 import { fetchGenres } from '@/pages/api/genres';
 import MovieCard from './MovieCard';
+import CountdownTimer from './Countdown';
 
 const Hero = () => {
 	const [heroMovies, setHeroMovies] = useState([]);
 	const [randomMovies, setRandomMovies] = useState([]);
+	const [initialSeconds, setInitialSeconds] = useState(30);
 	const [genres, setGenres] = useState([]);
 	const [page, setPage] = useState(1);
 
@@ -24,47 +26,39 @@ const Hero = () => {
 	};
 
 	useEffect(() => {
-		fetchGenres().then(result => setGenres(result));
+		fetchGenres().then(setGenres);
+		fetchMovies(1);
 	}, []);
 
 	useEffect(() => {
-		let fetchInterval;
-		const startInterval = () => {
-			fetchInterval = setInterval(() => {
-				setPage(prevPage => {
-					if (prevPage < 5) return prevPage + 1;
-					clearInterval(fetchInterval);
-					return prevPage;
-				});
-			}, 5000);
-		};
-		fetchMovies(page);
-		startInterval();
-		return () => clearInterval(fetchInterval);
-	}, [page]);
-
-	useEffect(() => {
-		setRandomMovies(heroMovies.slice(0, 3));
-		const randomInterval = setInterval(() => {
+		if (heroMovies.length > 0) {
 			setRandomMovies(getRandomMovies(heroMovies, 3));
-		}, 30000);
 
-		return () => clearInterval(randomInterval);
-	}, [heroMovies]);
+			const interval = setInterval(() => {
+				setRandomMovies(getRandomMovies(heroMovies, 3));
+				setInitialSeconds(30);
+				// Keep fetching new pages until page 5
+				setPage(prev => {
+					if (prev < 5) {
+						fetchMovies(prev + 1);
+						return prev + 1;
+					}
+					return prev;
+				});
+			}, 30000);
 
-	console.log('heroMovies', heroMovies);
+			return () => clearInterval(interval);
+		}
+	}, [heroMovies.length]);
+
+	console.log('heroMovies', heroMovies, randomMovies);
 	return (
 		<div className='h-full'>
 			<h1 className='text-3xl mb-5 text-center'>Popcorn time</h1>
+			<CountdownTimer initialSeconds={initialSeconds} />
 			<ul className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-16'>
 				{randomMovies.map((movie, index) => {
-					return (
-						<MovieCard
-							movie={movie}
-							index={index}
-							genres={genres}
-						/>
-					);
+					return <MovieCard movie={movie} index={index} genres={genres} />;
 				})}
 			</ul>
 		</div>

@@ -19,13 +19,9 @@ const MovieCard = ({ movie, index }) => {
 	// console.log('pageName', pageName, typeof pageName);
 	// console.log('movie-serie', movie);
 	return (
-		<li
-			key={`${movie?.id}+${index}`}
-			className='flex justify-center'>
+		<li key={`${movie?.id}+${index}`} className='flex justify-center'>
 			<Link
-				href={
-					pageName === 'series' ? `/serie/${movie?.id}` : `/movie/${movie?.id}`
-				}>
+				href={pageName === 'series' ? `/serie/${movie?.id}` : `/movie/${movie?.id}`}>
 				<div
 					className={`rounded-sm bg-[--background-secondary] h-[440px] w-[240px] p-1 ${
 						s.shadowed
@@ -42,10 +38,10 @@ const MovieCard = ({ movie, index }) => {
 						data-src={movie?.poster_path}
 					/>
 					<div className='p-2'>
-						<h3 className='uppercase text-[--text-color] text-sm text-ellipsis overflow-hidden whitespace-nowrap'>
+						<h3 className='uppercase text-[--text-color] text-sm truncate'>
 							{movie?.title}
 						</h3>
-						<p className='text-xs font-light text-ellipsis overflow-hidden whitespace-nowrap'>
+						<p className='text-xs font-light truncate'>
 							Genres: {getGenreNames(movie?.genre_ids, genres)}
 						</p>
 						<p className='text-xs font-light'>
@@ -56,10 +52,7 @@ const MovieCard = ({ movie, index }) => {
 						</p>
 					</div>
 					{(pageName === 'actors' || pageName === '') && (
-						<OverviewHover
-							movie={movie}
-							pageName={pageName}
-						/>
+						<OverviewHover movie={movie} pageName={pageName} />
 					)}
 				</div>
 			</Link>
