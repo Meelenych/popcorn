@@ -12,11 +12,16 @@
 
 .abbyss {
   /* outline: 1px solid tomato; */
-  height: 200px;
+  height: 400px;
   width: 100%;
   background-image: linear-gradient(to top, black, rgba(0, 0, 0, 0));
   position: absolute;
   bottom: 0;
   left: 0;
   z-index: 100;
+}
+
+.grainy {
+  background-image: url("../../public/images/grains.svg");
+  opacity: 0.5;
 }

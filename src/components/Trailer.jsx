@@ -31,11 +31,14 @@ const Trailer = ({ trailers, showTrailer, autoplay }) => {
 											<h4 className='text-center text-xl uppercase text-white mb-1 font-medium'>
 												{!autoplay && trailer.name}
 											</h4>
-											<div className='relative w-full h-screen overflow-hidden'>
+											<div
+												className={`relative w-full overflow-hidden' ${
+													autoplay ? 'h-screen' : 'h-auto'
+												}`}>
 												<iframe
 													className={
 														autoplay
-															? 'absolute top-[-30%] left-[-155%] w-[180vh] h-[120vh] max-w-none z-0'
+															? 'absolute top-[-25%] left-[-135%] w-[180vh] h-[120vh] max-w-none z-0'
 															: 'w-full h-[190px] sm:h-[350px] md:h-[410px] lg:h-[640px] xl:h-[850px]'
 													}
 													src={`https://www.youtube.com/embed/${trailer.key}?${

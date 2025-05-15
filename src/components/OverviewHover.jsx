@@ -19,11 +19,14 @@ const OverviewHover = ({ movie, pageName }) => {
 
 	console.log('movie', movie);
 	return (
-		<div className='p-1 absolute top-0 left-0 right-0 text-white bg-black bg-opacity-70 opacity-0 hover:opacity-100 h-full rounded-sm overflow-hidden'>
+		<div className='absolute top-0 left-0 right-0 text-white bg-black bg-opacity-70 opacity-0 hover:opacity-100 h-[85.5%] sm:h-[88.5%] rounded-sm overflow-hidden'>
 			<div className='relative h-full'>
-				<div className={s.abbyss}></div>
-				<p className={'p-5 text-base sm:text-md lg:text-md'}>{movie?.overview}</p>
+				{pageName !== '' && <div className={s.abbyss}></div>}
 				<Trailer trailers={trailers} showTrailer={true} autoplay={true} />
+				<p
+					className={`p-5 text-base sm:text-md lg:text-md absolute bottom-0 left-0 bg-black/70 backdrop-blur-md ${s.grainy}`}>
+					{movie?.overview}
+				</p>
 			</div>
 		</div>
 	);

@@ -55,7 +55,7 @@ const Hero = () => {
 	return (
 		<div className='h-full'>
 			<h1 className='text-3xl mb-5 text-center'>Popcorn time</h1>
-			<CountdownTimer initialSeconds={initialSeconds} />
+			{/* <CountdownTimer initialSeconds={initialSeconds} /> */}
 			<ul className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-16'>
 				{randomMovies.map((movie, index) => {
 					return <MovieCard movie={movie} index={index} genres={genres} />;

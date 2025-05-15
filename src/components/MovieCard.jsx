@@ -26,17 +26,23 @@ const MovieCard = ({ movie, index }) => {
 					className={`rounded-sm bg-[--background-secondary] h-[440px] w-[240px] p-1 ${
 						s.shadowed
 					} ${s.hovered} ${pageName === '' && 'h-auto w-auto'}`}>
-					<img
-						className='rounded-sm'
-						src={
-							movie?.poster_path
-								? `https://www.themoviedb.org/t/p/w440_and_h660_face/${movie?.poster_path}`
-								: '/images/dummy.jpg'
-						}
-						loading='lazy'
-						alt={movie?.original_title}
-						data-src={movie?.poster_path}
-					/>
+					<div>
+						<img
+							className='rounded-sm'
+							src={
+								movie?.poster_path
+									? `https://www.themoviedb.org/t/p/w440_and_h660_face/${movie?.poster_path}`
+									: '/images/dummy.jpg'
+							}
+							loading='lazy'
+							alt={movie?.original_title}
+							data-src={movie?.poster_path}
+						/>
+
+						{(pageName === 'actors' || pageName === '') && (
+							<OverviewHover movie={movie} pageName={pageName} />
+						)}
+					</div>
 					<div className='p-2'>
 						<h3 className='uppercase text-[--text-color] text-sm truncate'>
 							{movie?.title}
@@ -51,9 +57,6 @@ const MovieCard = ({ movie, index }) => {
 							Rating: {movie?.vote_average.toFixed()}/10
 						</p>
 					</div>
-					{(pageName === 'actors' || pageName === '') && (
-						<OverviewHover movie={movie} pageName={pageName} />
-					)}
 				</div>
 			</Link>
 		</li>
