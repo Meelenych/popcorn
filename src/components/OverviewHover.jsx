@@ -9,7 +9,7 @@ const OverviewHover = ({ movie, pageName }) => {
 	useEffect(() => {
 		fetchTrailer(movie.id)
 			.then(trailerData => {
-				console.log('OverviewHover trailer', trailerData.results);
+				// console.log('OverviewHover trailer', trailerData.results);
 				setTrailers(trailerData.results);
 			})
 			.catch(err => {
