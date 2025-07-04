@@ -46,6 +46,13 @@ const Navigation = () => {
 					href='/series'>
 					<div className='py-2 px-6'>TV Shows</div>
 				</Link>
+				<Link
+					className={`hover:text-[--accent] active:text-[--active] ${
+						pathname === '/discover' && activeLink
+					}`}
+					href='/discover'>
+					<div className='py-2 px-6'>Discover</div>
+				</Link>
 			</nav>
 		</>
 	);
