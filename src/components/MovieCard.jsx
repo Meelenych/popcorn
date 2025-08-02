@@ -54,7 +54,7 @@ const MovieCard = ({ movie, index }) => {
 							Release date: {new Date(movie?.release_date).toLocaleDateString('en-US')}
 						</p>
 						<p className='text-xs text-[--active]'>
-							Rating: {movie?.vote_average.toFixed()}/10
+							Rating: {movie?.vote_average?.toFixed()}/10
 						</p>
 					</div>
 				</div>

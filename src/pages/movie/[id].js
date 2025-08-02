@@ -15,6 +15,7 @@ import Layout from '@/components/Layout';
 import Trailer from '@/components/Trailer';
 import Cast from '@/components/Cast';
 import Reviews from '@/components/Reviews';
+import PosterModal from '@/components/PosterModal';
 import { getPopularityLabel } from '@/helpers/popularity';
 import styles from '../../styles/gradient.module.css';
 import s from '../../styles/hover.module.css';
@@ -28,6 +29,7 @@ const MovieId = () => {
 	const [trailers, setTrailers] = useState(null);
 	const [showTrailer, setShowTrailer] = useState(false);
 	const [directors, setDirectors] = useState([]);
+	const [showModal, setShowModal] = useState(false);
 	const router = useRouter();
 	const { id } = router.query;
 	// Refs for scrolling
@@ -88,6 +90,13 @@ const MovieId = () => {
 
 	return (
 		<Layout>
+			{showModal && (
+				<PosterModal
+					posterPath={movie?.poster_path}
+					title={movie?.original_title}
+					setShowModal={setShowModal}
+				/>
+			)}
 			<nav className='grid grid-cols-4 gap-4'>
 				<BackButton />
 				<Details
@@ -99,9 +108,9 @@ const MovieId = () => {
 					showTrailer={showTrailer}
 				/>
 			</nav>
-
 			<div className='pt-4 flex flex-col md:flex-row gap-6 text-[--text-color]'>
 				<div
+					onClick={() => setShowModal(!showModal)}
 					className={`rounded-sm bg-[--background-secondary] p-1 w-full md:w-1/3 h-[720px] relative`}>
 					<img
 						className='rounded-sm w-full h-full object-cover'
