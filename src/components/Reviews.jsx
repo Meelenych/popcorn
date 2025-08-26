@@ -19,9 +19,9 @@ const Reviews = ({ showReviews, reviews }) => {
 						{reviews.map(review => (
 							<li
 								key={review.id}
-								className='p-4 bg-[--background-reviews] grid grid-cols-1 md:grid-cols-6 gap-4 rounded-sm'>
+								className='p-4 bg-[--background-reviews] grid grid-cols-1 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-9 2xl:grid-cols-12 gap-4 rounded-sm'>
 								<div className='flex flex-row md:flex-col items-start gap-4'>
-									<div className='rounded overflow-hidden max-h-64 w-1/3 md:h-auto md:w-auto'>
+									<div className='rounded overflow-hidden max-h-64 max-w-64 md:h-auto md:w-auto flex items-center justify-center'>
 										<img
 											src={
 												review.author_details.avatar_path === null
@@ -41,7 +41,7 @@ const Reviews = ({ showReviews, reviews }) => {
 										</p>
 									</div>
 								</div>
-								<div className='sm:col-span-5'>
+								<div className='col-span-1 md:col-span-3 lg:col-span-5 xl:col-span-8 2xl:col-span-11'>
 									<p>{review.content}</p>
 								</div>
 							</li>

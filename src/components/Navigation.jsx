@@ -37,14 +37,16 @@ const Navigation = () => {
 						pathname === '/theaters' && activeLink
 					}`}
 					href='/theaters'>
-					<div className='py-2 px-6'>In theaters now</div>
+					<div className='py-2 px-6 hidden lg:block'>In theaters now</div>
+					<div className='py-2 px-6 block lg:hidden'>Theaters</div>
 				</Link>
 				<Link
 					className={`hover:text-[--accent] active:text-[--active] ${
 						pathname === '/series' && activeLink
 					}`}
 					href='/series'>
-					<div className='py-2 px-6'>TV Shows</div>
+					<div className='py-2 px-6 hidden lg:block'>TV Shows</div>
+					<div className='py-2 px-6 block lg:hidden'>Shows</div>
 				</Link>
 				<Link
 					className={`hover:text-[--accent] active:text-[--active] ${
