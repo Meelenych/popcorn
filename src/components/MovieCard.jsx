@@ -23,7 +23,7 @@ const MovieCard = ({ movie, index }) => {
 			<Link
 				href={pageName === 'series' ? `/serie/${movie?.id}` : `/movie/${movie?.id}`}>
 				<div
-					className={`rounded-sm bg-[--background-secondary] h-[440px] w-[240px] p-1 ${
+					className={`rounded-sm bg-[--background-secondary] h-[590px] w-[340px] sm:h-[440px] sm:w-[240px] p-1 ${
 						s.shadowed
 					} ${s.hovered} ${pageName === '' && 'h-auto w-auto'}`}>
 					<div>
