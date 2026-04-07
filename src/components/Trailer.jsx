@@ -3,7 +3,7 @@ import s from '../styles/gradient.module.css';
 import Loading from '@/pages/loading';
 
 const Trailer = ({ trailers, showTrailer, autoplay }) => {
-	console.log('trailers', trailers);
+	// console.log('trailers', trailers);
 	return (
 		<div className='mt-4'>
 			{showTrailer && (
@@ -23,10 +23,10 @@ const Trailer = ({ trailers, showTrailer, autoplay }) => {
 						trailers?.map(trailer => {
 							return (
 								trailer.type === 'Trailer' && (
-									<Suspense fallback={Loading}>
+									<Suspense key={trailer.id} fallback={Loading}>
 										<div
 											className={
-												!autoplay && 'bg-[--background-secondary] p-1 rounded-sm mb-4'
+												!autoplay ? 'bg-[--background-secondary] p-1 rounded-sm mb-4' : ''
 											}>
 											<h4 className='text-center text-xl uppercase text-white mb-1 font-medium'>
 												{!autoplay && trailer.name}

@@ -25,7 +25,7 @@ const MovieCard = ({ movie, index }) => {
 				<div
 					className={`rounded-sm bg-[--background-secondary] h-[590px] w-[340px] sm:h-[440px] sm:w-[240px] p-1 ${
 						s.shadowed
-					} ${s.hovered} ${pageName === '' && 'h-auto w-auto'}`}>
+					} ${s.hovered} ${pageName === '' && 'sm:h-auto sm:w-auto'}`}>
 					<div>
 						<img
 							className='rounded-sm'

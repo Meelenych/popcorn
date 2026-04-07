@@ -51,14 +51,14 @@ const Hero = () => {
 		}
 	}, [heroMovies.length]);
 
-	console.log('heroMovies', heroMovies, randomMovies);
+	// console.log('heroMovies', heroMovies, randomMovies);
 	return (
 		<div className='h-full'>
 			<h1 className='text-3xl mb-5 text-center'>Popcorn time</h1>
 			{/* <CountdownTimer initialSeconds={initialSeconds} /> */}
 			<ul className='grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-16'>
 				{randomMovies.map((movie, index) => {
-					return <MovieCard movie={movie} index={index} genres={genres} />;
+					return <MovieCard key={index+movie.id} movie={movie} index={index} genres={genres} />;
 				})}
 			</ul>
 		</div>

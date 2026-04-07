@@ -38,11 +38,11 @@ const SerieId = () => {
 		if (id) {
 			fetchApiMovie(id, 'tv').then(result => {
 				setSerie(result);
-				console.log('series result', result);
+				// console.log('series result', result);
 			});
 		}
 	}, [id]);
-	console.log('serie', serie);
+	// console.log('serie', serie);
 
 	// const handleShowTrailer = () => {
 	// 	if (!showTrailer) {
@@ -130,9 +130,9 @@ const SerieId = () => {
 						<p>For adults: {serie?.adult ? 'yes' : 'no'}</p>
 						<ul className='flex'>
 							Created by:{' '}
-							{serie?.created_by.map((creator, index, id) => {
+							{serie?.created_by.map((creator, index) => {
 								return (
-									<li key={id + index}>
+									<li key={creator.id}>
 										<div className='relative underline hover:text-[--text-color] group'>
 											<div className='absolute bottom-5 left-0 bg-[--background-secondary] p-1 rounded hidden group-hover:block'>
 												<img

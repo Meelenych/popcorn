@@ -26,7 +26,7 @@ async function fetchApiDiscover({
 
 	const url = `${baseUrl}discover/movie?${searchParams.toString()}`;
 
-	console.log('💬 Discover URL:', url); // <- Use this to debug in the console
+	// console.log('💬 Discover URL:', url); // <- Use this to debug in the console
 
 	const response = await fetch(url);
 	if (!response.ok) {

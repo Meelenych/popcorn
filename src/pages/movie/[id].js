@@ -41,17 +41,17 @@ const MovieId = () => {
 		if (id) {
 			fetchApiMovie(id).then(result => {
 				setMovie(result);
-				console.log(result);
+				// console.log(result);
 			});
 		}
 	}, [id]);
-	console.log('movie', movie);
+	// console.log('movie', movie);
 
 	const handleShowTrailer = () => {
 		if (!showTrailer) {
 			fetchTrailer(id).then(trailerData => {
 				setTrailers(trailerData.results);
-				console.log('trailer', trailerData.results);
+				// console.log('trailer', trailerData.results);
 			});
 			trailerRef.current?.scrollIntoView({
 				block: 'end',
@@ -67,10 +67,10 @@ const MovieId = () => {
 				setCast(castData.cast);
 				setDirectors(castData.crew.filter(crewMember => crewMember.job === 'Director'));
 				// console.log('castData.cast', castData.cast, castData);
-				console.log(
-					'crew',
-					castData.crew.filter(crewMember => crewMember.job === 'Director'),
-				);
+				// console.log(
+				// 	'crew',
+				// 	castData.crew.filter(crewMember => crewMember.job === 'Director'),
+				// );
 			});
 			castRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
 		}
@@ -81,7 +81,7 @@ const MovieId = () => {
 		if (!showReviews) {
 			fetchApiReviews(id).then(reviewsData => {
 				setReviews(reviewsData.results);
-				console.log('reviewsData', reviewsData);
+				// console.log('reviewsData', reviewsData);
 			});
 			reviewsRef.current?.scrollIntoView({ block: 'start', behavior: 'smooth' });
 		}

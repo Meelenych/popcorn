@@ -17,15 +17,15 @@ const OverviewHover = ({ movie, pageName }) => {
 			});
 	}, [movie]);
 
-	console.log('movie', movie);
+	// console.log('movie', movie);
 	return (
-		<div className='absolute top-0 left-0 right-0 text-white bg-black bg-opacity-70 opacity-0 hover:opacity-100 h-[85.5%] sm:h-[88.5%] rounded-sm overflow-hidden'>
+		<div className={`absolute top-0 left-0 right-0 text-white bg-black bg-opacity-70 opacity-0 hover:opacity-100 h-[85.5%] sm:h-[80.5%] rounded-sm overflow-hidden ${pageName === '' ? 'sm:h-[88.5%]' : ''}`}>
 			<div className='relative h-full'>
 				{pageName !== '' && <div className={s.abbyss}></div>}
 				<Trailer trailers={trailers} showTrailer={true} autoplay={true} />
 				<p
 					className={`p-5 text-base sm:text-md lg:text-md absolute bottom-0 left-0 bg-black/70 backdrop-blur-md ${s.grainy}`}>
-					{movie?.overview}
+					{movie?.overview.slice(0, 320)}...
 				</p>
 			</div>
 		</div>

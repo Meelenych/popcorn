@@ -20,7 +20,7 @@ const Actor = () => {
 			fetchActor(id)
 				.then(actorData => {
 					setActorData(actorData);
-					console.log('actorData', actorData);
+					// console.log('actorData', actorData);
 				})
 				.catch(err => {
 					console.log('Error fetching actor:', err);
@@ -29,7 +29,7 @@ const Actor = () => {
 			fetchFilmography(id)
 				.then(filmographyData => {
 					setFilmography(filmographyData);
-					console.log('filmographyData', filmographyData);
+					// console.log('filmographyData', filmographyData);
 				})
 				.catch(err => {
 					console.log('Error fetching actor:', err);

@@ -2,7 +2,7 @@ import React from 'react';
 import s from '../styles/gradient.module.css';
 
 const Reviews = ({ showReviews, reviews }) => {
-	console.log('reviews', reviews);
+	// console.log('reviews', reviews);
 	return (
 		<div className='mt-4'>
 			{showReviews && (
